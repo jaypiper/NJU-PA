@@ -1,7 +1,6 @@
 STU_ID = 181250012
 STUID = 181250012
 STUNAME = 陈璐
-TASK = pa0
 # DO NOT modify the following code!!!
 
 GITFLAGS = -q --author='tracer-ics2019 <tracer@njuics.org>' --no-verify --allow-empty
