@@ -68,8 +68,8 @@ static int cmd_x(char *args){
      i++;
   }
   for(int l=0;l<a;++l){
-    printf("0x%s: %p", n,&ad);
-    ad+=8;    
+    printf("0x%s: %d", n,*(int*)ad);
+    ad+=4;    
   }
   return 0;
 }
