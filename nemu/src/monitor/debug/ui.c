@@ -58,11 +58,16 @@ static int cmd_x(char *args){
     a+=args[i]-48;
   }
   i=i+3;
+  char n[13];
   for(int j=0;j<12;j++){
-    ad*=10;
-    ad+=args[i]-48;
+     n[j]=args[i];
+     ad*=16;
+     if(args[i]<=57){ad+=args[i]-48;}
+     else if(args[i]<='Z') {ad+=args[i]-'A'+10;}
+     else {ad+=args[i]-'a'+10;}
+     i++;
   }
-  printf("%lld: ", ad);     
+  printf("0x%s: %d", n, *(int*)ad);     
   return 0;
 }
 
