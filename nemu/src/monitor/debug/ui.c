@@ -67,7 +67,10 @@ static int cmd_x(char *args){
      else {ad+=args[i]-'a'+10;}
      i++;
   }
-  printf("0x%s: %d", n,*(int*)ad);     
+  for(int l=0;l<a;++l){
+    printf("0x%s: %d", n,*(int*)ad);
+    ad+=8;    
+  }
   return 0;
 }
 
