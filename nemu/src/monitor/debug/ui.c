@@ -62,7 +62,7 @@ static int cmd_x(char *args){
     ad*=10;
     ad+=args[i]-48;
   }
-  printf("%lld: %d", ad, *(int*)ad);     
+  printf("%lld: ", ad);     
   return 0;
 }
 
