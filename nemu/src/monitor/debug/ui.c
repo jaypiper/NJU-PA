@@ -46,7 +46,7 @@ static int cmd_si(char *args){
 static int cmd_info(char *args){
   if(args[1]=='r') {isa_reg_display(); }
   else {printf("No such command, maybe you want to using info r"); }
-  printf("/n%d",args[1]);
+  printf("/n%d",args[0]);
   return 0;
 }
 
