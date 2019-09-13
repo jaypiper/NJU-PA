@@ -59,7 +59,7 @@ static int cmd_x(char *args){
   }
   i=i+3;
   char n[13];
-  for(int j=0;j<12;j++){
+  for(int j=0;j<8;j++){
      n[j]=args[i];
      ad*=16;
      if(args[i]<=57){ad+=args[i]-48;}
