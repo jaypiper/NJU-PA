@@ -39,15 +39,13 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 
 static int cmd_si(char *args){
-  printf("%d,%d",args[0],args[1]);
   cpu_exec(args[1]);
   return 0;
 }
 
 static int cmd_info(char *args){
-  if(args[1]=='r') {isa_reg_display(); }
+  if(args[0]=='r') {isa_reg_display(); }
   else {printf("No such command, maybe you want to using info r"); }
-  printf("/n%d",args[0]);
   return 0;
 }
 
