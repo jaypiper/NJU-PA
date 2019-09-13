@@ -39,7 +39,7 @@ static int cmd_q(char *args) {
 static int cmd_help(char *args);
 
 static int cmd_si(char *args){
-  cpu_exec(args[1]);
+  cpu_exec(atoi(args));
   return 0;
 }
 
