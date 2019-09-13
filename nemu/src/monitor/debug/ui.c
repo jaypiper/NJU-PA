@@ -51,12 +51,18 @@ static int cmd_info(char *args){
 }
 
 static int cmd_x(char *args){
-  printf("%d %d %d",args[0],args[1],args[2]);
-       	// for(int i=0; i+48<args[0]; i++){
-   // char c[2]={args[1]};
-   // int *ad=(int *)atol(c);
-   // printf("%p: %d", ad, *ad);
- // }
+  int a=0,i;
+  long long ad=0;
+  for(i=0;args[i]!=' ';i++){
+    a*=10;
+    a+=args[i]-48;
+  }
+  i=i+3;
+  for(int j=0;j<12;j++){
+    ad*=10;
+    ad+=args[i]-48;
+  }
+       
   return 0;
 }
 
