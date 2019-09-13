@@ -68,7 +68,7 @@ static int cmd_x(char *args){
      i++;
   }
   for(int l=0;l<a;++l){
-    printf("0x%s: %d\n", n,*(int *)0x100000);
+    printf("0x%s: %d\n", n,*((int *)0x100000));
     ad+=4;    
   }
   return 0;
