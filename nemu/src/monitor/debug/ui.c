@@ -46,7 +46,7 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-
+  { "si [N]", "Executes n instructions,default n=0"},  
   /* TODO: Add more commands */
 
 };
@@ -83,6 +83,7 @@ void ui_mainloop(int is_batch_mode) {
   }
 
   for (char *str; (str = rl_gets()) != NULL; ) {
+    /*读取到一条指令*/
     char *str_end = str + strlen(str);
 
     /* extract the first token as the command */
