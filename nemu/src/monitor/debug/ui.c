@@ -57,6 +57,7 @@ static int cmd_x(char *args){
     a*=10;
     a+=args[i]-48;
   }
+  printf("%d",a);
   i=i+3;
   char n[13];
   for(int j=0;j<12;j++){
