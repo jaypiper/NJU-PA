@@ -53,7 +53,7 @@ static int cmd_info(char *args){
 static int cmd_x(char *args){
   int a=0,i;
   long long ad=0;
-  for(i=0;args[i]!=' ';i++){
+  for(i=0;args[i]!=' '&&i<strlen(args);i++){
     a*=10;
     a+=args[i]-48;
   }
