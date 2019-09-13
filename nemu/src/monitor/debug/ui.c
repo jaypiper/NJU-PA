@@ -51,26 +51,9 @@ static int cmd_info(char *args){
 }
 
 static int cmd_x(char *args){
-  int a=0,i;
-  long long ad=0;
-  for(i=0;args[i]!=' '&&i<strlen(args);i++){
-    a*=10;
-    a+=args[i]-48;
-  }
-  i=i+3;
-  char n[9];
-  for(int j=0;j<8&&i<strlen(args);j++){
-     n[j]=args[i];
-     ad*=16;
-     if(args[i]<=57){ad+=args[i]-48;}
-     else if(args[i]<='Z') {ad+=args[i]-'A'+10;}
-     else {ad+=args[i]-'a'+10;}
-     i++;
-  }
-  for(int l=0;l<a;++l){
-    printf("0x%s: %d\n", n,*((int *)0x100000));
-    ad+=4;    
-  }
+  
+    printf(" %d\n",*((int *)0x100000));
+   
   return 0;
 }
 
