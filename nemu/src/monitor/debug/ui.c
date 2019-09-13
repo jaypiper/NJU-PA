@@ -49,6 +49,15 @@ static int cmd_info(char *args){
   return 0;
 }
 
+static int cmd_x(char *args){
+  for(int i=0; i+48<args[0]; i++){
+    char c[2]={args[1]};
+    int *ad=(int *)(long long)atoi(c);
+    printf("%p: %d", ad, *ad);
+  }
+  return 0;
+}
+
 static struct {
   char *name;
   char *description;
@@ -57,8 +66,10 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
-  { "si", "Executes n instructions,default n=0", cmd_si},  
+  { "si", "Executes n instructions,default n=0", cmd_si}, 
   { "info", "print the condition of the program, 'r' for regester and 'w' for watching", cmd_info},
+  { "x", "scan the memory, two extra arguments are needed, one for the expected byte number of the address, and one for expression which indicator the begging of the address", cmd_x},
+
   /* TODO: Add more commands */
 
 };
