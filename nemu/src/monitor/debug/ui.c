@@ -58,7 +58,7 @@ static int cmd_x(char *args){
     a+=args[i]-48;
   }
   i=i+3;
-  char n[13];
+  char n[9];
   for(int j=0;j<8;j++){
      n[j]=args[i];
      ad*=16;
