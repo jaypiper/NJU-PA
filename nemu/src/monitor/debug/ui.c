@@ -59,7 +59,7 @@ static int cmd_x(char *args){
   }
   i=i+3;
   char n[9];
-  for(int j=0;j<8;j++){
+  for(int j=0;j<8&&i<strlen(args);j++){
      n[j]=args[i];
      ad*=16;
      if(args[i]<=57){ad+=args[i]-48;}
@@ -68,7 +68,7 @@ static int cmd_x(char *args){
      i++;
   }
   for(int l=0;l<a;++l){
-    printf("0x%s: %ld\n", n,strlen(args));
+    printf("0x%s: %d\n", n,*(int *)0x100000);
     ad+=4;    
   }
   return 0;
