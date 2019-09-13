@@ -67,7 +67,7 @@ static int cmd_x(char *args){
      else {ad+=args[i]-'a'+10;}
      i++;
   }
-  printf("0x%s: %d", n, *(int*)ad);     
+  printf("0x%s: ", n);     
   return 0;
 }
 
