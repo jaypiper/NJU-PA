@@ -51,9 +51,22 @@ static int cmd_info(char *args){
 }
 
 static int cmd_x(char *args){
-  
-    printf(" %d\n",*((int *)0x100000));
-   
+  int a=0,i;
+ 
+  for(i=0;args[i]!=' '&&i<strlen(args);i++){
+    a*=10;
+    a+=args[i]-48;
+  }
+  i=i+3;
+  unsigned int ad=0;
+  for( ;i<strlen(args);i++){
+     ad*=16;
+     ad+=args[i];
+  }
+  for(int j=0;j<a;j++){
+    printf("%d: %d\n",ad,paddr_read(ad,4));
+    ad=ad+4;
+  }
   return 0;
 }
 
