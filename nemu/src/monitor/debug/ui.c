@@ -61,10 +61,12 @@ static int cmd_x(char *args){
   unsigned int ad=0;
   for( ;i<strlen(args);i++){
      ad*=16;
-     ad+=args[i];
+     if(args[i]<='9') {ad+=args[i]-'0';}
+     else if(args[i]<='Z') {ad+=args[i]-'A';}
+     else {ad+=args[i]-'a';}
   }
   for(int j=0;j<a;j++){
-    printf("%d: %d\n",ad,paddr_read(ad,4));
+    printf("%x: %x\n",ad,paddr_read(ad,4));
     ad=ad+4;
   }
   return 0;
