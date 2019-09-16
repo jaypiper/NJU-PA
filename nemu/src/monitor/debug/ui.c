@@ -66,7 +66,8 @@ static int cmd_x(char *args){
      else {ad+=args[i]-'a';}
   }
   for(int j=0;j<a;j++){
-    printf("%x: %x\n",ad,paddr_read(ad,4));
+    if(j%4==0) printf("\n%x:  ",ad);
+    printf("%x  ",paddr_read(ad,4));
     ad=ad+4;
   }
   return 0;
