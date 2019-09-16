@@ -70,6 +70,7 @@ static int cmd_x(char *args){
     printf("%08x  ",paddr_read(ad,4));
     ad=ad+4;
   }
+  printf("\n");
   return 0;
 }
 
