@@ -42,7 +42,7 @@ void reg_test() {
 
 void isa_reg_display() {
   for(int i=0;i<8;i++){
-    printf("%s: %d\n",regsl[i],cpu.gpr[i]._32);
+    printf("%s: %x  %d\n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32);
   }
 }
 
