@@ -67,7 +67,7 @@ static int cmd_x(char *args){
   }
   for(int j=0;j<a;j++){
     if(j%4==0) printf("\n%x:  ",ad);
-    printf("%x  ",paddr_read(ad,4));
+    printf("%08x  ",paddr_read(ad,4));
     ad=ad+4;
   }
   return 0;
