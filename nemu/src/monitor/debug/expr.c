@@ -126,7 +126,8 @@ static uint32_t eval(int beg, int end){
   if(tokens[beg].type == TK_NOTYPE) return eval(beg-1,end);
   if(tokens[end].type == TK_NOTYPE) return eval(beg,end-1);
   if(beg == end) return compute_num(beg);
-  if(check_p(beg,end))return eval(beg+1,end-1);
+  if(check_p(beg,end)){
+    return eval(beg+1,end-1); printf("true\n");}
   int in_par_num = 0;  //当前括号的层数
   int main_op = 0; //主运算符位置
   for(int i = beg; i <= end; i++){
