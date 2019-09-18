@@ -86,12 +86,14 @@ static bool make_token(char *e) {
          */
 	      tokens[nr_token].type = rules[i].token_type;
 	      for(int j=0;j<substr_len;j++){
-	      tokens[i].str[j] = substr_start[j];
+	        tokens[nr_token].str[j] = substr_start[j];
 	      }
+        nr_token++;
         printf("remember the token.str size is just 32, deal with it!\n");
-        switch (rules[i].token_type) {
-          default: printf("hello, there still left somthing to do\n");//TODO();
-        }
+        //下面先注释掉，后面记得实现
+        // switch (rules[i].token_type) {
+        //   default: printf("hello, there still left somthing to do\n");//TODO();
+        // }
 
         break;
       }
@@ -106,14 +108,48 @@ static bool make_token(char *e) {
   return true;
 }
 
+static bool check_p(int beg,int end){
+  if(tokens[beg].type == '(' && tokens[end].type == ')') return true;
+  return false;
+}
+static uint32_t compute_num(uint32_t i){
+  int num = 0;
+  for(int j = 0; j < 32 && tokens[i].str[j] != 0; j++){
+    num *= 10;
+    num += tokens[i].str[j]-'0';
+  }
+  return num;
+}
+static uint32_t eval(int beg, int end){
+  if(beg > end)return 0;
+  if(beg == end) return compute_num(beg);
+  if(check_p(beg,end))return eval(beg+1,end-1);
+  int in_par_num = 0;  //当前括号的层数
+  int main_op = 0; //主运算符位置
+  for(int i = beg; i <= end; i++){
+    if(tokens[i].type == '(') in_par_num++;
+    else if(tokens[i].type == ')') in_par_num--;
+    else if(tokens[i].type == '+' && tokens[i].type == '-' && in_par_num == 0) main_op = i;
+    else if(tokens[i].type == '*' && tokens[i].type == '/' && in_par_num ==0 && tokens[main_op].type != '+' && tokens[main_op].type != '-') main_op = i;
+  }
+  uint32_t val1 = eval(beg, main_op-1);
+  uint32_t val2 = eval(main_op + 1, end);
+  switch(tokens[main_op].type){
+    case '+': return val1 + val2;
+    case '-': return val1 - val2;
+    case '*': return val1 * val2;
+    case '/': return val1 / val2;
+    default: printf("wrong at token_num: %d, token_type: %d\n",main_op,tokens[main_op].type); return 0;
+  }
+}
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
-
+  printf("answer is %d",eval(0,nr_token));
   /* TODO: Insert codes to evaluate the expression. */
-  printf("helloooo! implement exp.c/expr\n");
+  
   //TODO();
 
   return 0;
