@@ -9,7 +9,7 @@
 
 void cpu_exec(uint64_t);
 void isa_reg_display(void);
-bool make_token(char*);
+uint32_t expr(char*,bool*);
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
   static char *line_read = NULL;
@@ -76,7 +76,7 @@ static int cmd_x(char *args){
 }
 
 static int cmd_p(char* args){
-	make_token(args);
+
 	return 0;
 }
 
