@@ -120,7 +120,7 @@ static uint32_t compute_num(uint32_t i){
 //int iter=0;
 static uint32_t eval(int beg, int end){
   //++iter;
-  //printf("at beg: %d, end: %d\n",beg,end); //测试代码
+  printf("at beg: %d, end: %d\n",beg,end); //测试代码
   //if(iter>=20)return 0;
   if(beg > end)return 0;
   for(int i = beg; i <= end; i++){
