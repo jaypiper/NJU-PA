@@ -76,8 +76,9 @@ static int cmd_x(char *args){
 }
 
 static int cmd_p(char* args){
-
-	return 0;
+  bool judge = true;
+  expr(args,&judge);
+  return 0;
 }
 
 static struct {
