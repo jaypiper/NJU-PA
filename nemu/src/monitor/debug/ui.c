@@ -9,6 +9,7 @@
 
 void cpu_exec(uint64_t);
 void isa_reg_display(void);
+void make_token(char*);
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
   static char *line_read = NULL;
@@ -74,6 +75,11 @@ static int cmd_x(char *args){
   return 0;
 }
 
+static int cmd_p(char* args){
+	make_token(args);
+	return 0;
+}
+
 static struct {
   char *name;
   char *description;
@@ -85,6 +91,7 @@ static struct {
   { "si", "Executes n instructions,default n=0", cmd_si}, 
   { "info", "print the condition of the program, 'r' for regester and 'w' for watching", cmd_info},
   { "x", "scan the memory, two extra arguments are needed, one for the expected byte number of the address, and one for expression which indicator the begging of the address", cmd_x},
+  { "p", "expression evalueation", cmd_p},
 
   /* TODO: Add more commands */
 
