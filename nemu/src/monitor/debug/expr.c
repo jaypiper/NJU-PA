@@ -121,6 +121,7 @@ static uint32_t compute_num(uint32_t i){
   return num;
 }
 static uint32_t eval(int beg, int end){
+  printf("at beg: %d, end: %d\n",beg,end);
   if(beg > end)return 0;
   if(tokens[beg].type == TK_NOTYPE) return eval(beg-1,end);
   if(tokens[end].type == TK_NOTYPE) return eval(beg,end-1);
@@ -149,7 +150,7 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  printf("nr_token: %d\n",nr_token);
+
   printf("answer is %d\n",eval(0,nr_token-1));
   /* TODO: Insert codes to evaluate the expression. */
   
