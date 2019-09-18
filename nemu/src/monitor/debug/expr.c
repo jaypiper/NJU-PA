@@ -90,7 +90,7 @@ static bool make_token(char *e) {
 	}
 
         switch (rules[i].token_type) {
-          default: TODO();
+          default: printf("hello, there still left somthing to do\n");//TODO();
         }
 
         break;
