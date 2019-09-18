@@ -132,8 +132,8 @@ static uint32_t eval(int beg, int end){
   for(int i = beg; i <= end; i++){
     if(tokens[i].type == '(') in_par_num++;
     else if(tokens[i].type == ')') in_par_num--;
-    else if(tokens[i].type == '+' && tokens[i].type == '-' && in_par_num == 0) main_op = i;
-    else if(tokens[i].type == '*' && tokens[i].type == '/' && in_par_num ==0 && tokens[main_op].type != '+' && tokens[main_op].type != '-') main_op = i;
+    else if((tokens[i].type == '+' || tokens[i].type == '-') && in_par_num == 0) main_op = i;
+    else if((tokens[i].type == '*' || tokens[i].type == '/') && in_par_num ==0 && tokens[main_op].type != '+' && tokens[main_op].type != '-') main_op = i;
   }
   uint32_t val1 = eval(beg, main_op-1);
   uint32_t val2 = eval(main_op + 1, end);
