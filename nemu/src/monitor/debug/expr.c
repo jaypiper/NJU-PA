@@ -117,8 +117,11 @@ static uint32_t compute_num(uint32_t i){
   }
   return num;
 }
+int iter=0;
 static uint32_t eval(int beg, int end){
+  ++iter;
   printf("at beg: %d, end: %d\n",beg,end); //debug使用
+  if(iter>=20)return 0;
   if(beg > end)return 0;
   if(tokens[beg].type == TK_NOTYPE) return eval(beg+1,end);
   if(tokens[end].type == TK_NOTYPE) return eval(beg,end-1);
