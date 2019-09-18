@@ -126,7 +126,6 @@ static uint32_t eval(int beg, int end){
   if(tokens[beg].type == TK_NOTYPE) return eval(beg+1,end);
   if(tokens[end].type == TK_NOTYPE) return eval(beg,end-1);
   if(beg == end) return compute_num(beg);
-  if(tokens[beg].type == '(' && tokens[end].type == ')')return eval(beg+1,end-1);
   int in_par_num = 0;  //当前括号的层数
   int main_op = 0; //主运算符位置
   for(int i = beg; i <= end; i++){
@@ -135,6 +134,7 @@ static uint32_t eval(int beg, int end){
     else if((tokens[i].type == '+' || tokens[i].type == '-') && in_par_num == 0) main_op = i;
     else if((tokens[i].type == '*' || tokens[i].type == '/') && in_par_num ==0 && tokens[main_op].type != '+' && tokens[main_op].type != '-') main_op = i;
   }
+  if(main_op == 0 && tokens[beg].type == '(' && tokens[end].type == ')')return eval(beg+1,end-1);
   uint32_t val1 = eval(beg, main_op-1);
   uint32_t val2 = eval(main_op + 1, end);
   switch(tokens[main_op].type){
