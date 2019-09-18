@@ -108,10 +108,7 @@ static bool make_token(char *e) {
   return true;
 }
 
-static bool check_p(int beg,int end){
-  if(tokens[beg].type == '(' && tokens[end].type == ')') return true;
-  return false;
-}
+
 static uint32_t compute_num(uint32_t i){
   uint32_t num = 0;
   for(int j = 0; j < 32 && tokens[i].str[j] != 0; j++){
@@ -126,8 +123,7 @@ static uint32_t eval(int beg, int end){
   if(tokens[beg].type == TK_NOTYPE) return eval(beg-1,end);
   if(tokens[end].type == TK_NOTYPE) return eval(beg,end-1);
   if(beg == end) return compute_num(beg);
-  if(check_p(beg,end)){
-    return eval(beg+1,end-1); printf("true\n");}
+  if(tokens[beg].type == '(' && tokens[end].type == ')')return eval(beg+1,end-1);
   int in_par_num = 0;  //当前括号的层数
   int main_op = 0; //主运算符位置
   for(int i = beg; i <= end; i++){
