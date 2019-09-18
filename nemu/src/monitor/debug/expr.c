@@ -123,7 +123,7 @@ static uint32_t eval(int beg, int end){
   //printf("at beg: %d, end: %d\n",beg,end); //测试代码
   //if(iter>=20)return 0;
   if(beg > end)return 0;
-  for(int i = beg; i < end; i++){
+  for(int i = beg; i <= end; i++){
     if(tokens[i].type == '-'){
       if(i == beg||tokens[i-1].type == '+'||tokens[i-1].type == '-'||tokens[i-1].type == '*'||tokens[i-1].type == '/'){
         tokens[i].type = TK_NOTYPE;
