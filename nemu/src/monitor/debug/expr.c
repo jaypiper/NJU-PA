@@ -113,7 +113,7 @@ static bool check_p(int beg,int end){
   return false;
 }
 static uint32_t compute_num(uint32_t i){
-  int num = 0;
+  uint32_t num = 0;
   for(int j = 0; j < 32 && tokens[i].str[j] != 0; j++){
     num *= 10;
     num += tokens[i].str[j]-'0';
@@ -147,7 +147,7 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  printf("answer is %d",eval(0,nr_token));
+  printf("answer is %d",eval(0,nr_token-1));
   /* TODO: Insert codes to evaluate the expression. */
   
   //TODO();
