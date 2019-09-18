@@ -123,11 +123,12 @@ static uint32_t eval(int beg, int end){
   printf("at beg: %d, end: %d\n",beg,end); //测试代码
   //if(iter>=20)return 0;
   if(beg > end)return 0;
+  /* 处理负号 */
   for(int i = beg; i <= end; i++){
     if(tokens[i].type == '-'){
       if(i == beg||tokens[i-1].type == '+'||tokens[i-1].type == '-'||tokens[i-1].type == '*'||tokens[i-1].type == '/'){
         tokens[i].type = TK_NOTYPE;
-        for(int j = 0; j < 32 && tokens[i].str[j] != 0; j++) tokens[i].str[j] = 2 * '0' - tokens[i].str[j];
+        for(int j = 0; j < 32 && tokens[i+1].str[j] != 0; j++) tokens[i+1].str[j] = 2 * '0' - tokens[i+1].str[j];
       }
     }
   }
