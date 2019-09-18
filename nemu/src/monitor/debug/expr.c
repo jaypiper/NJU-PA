@@ -84,11 +84,11 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-	tokens[nr_token].type = rules[i].token_type;
-	for(int j=0;j<substr_len;j++){
-	  tokens[i].str[j] = substr_start[j];
-	}
-
+	      tokens[nr_token].type = rules[i].token_type;
+	      for(int j=0;j<substr_len;j++){
+	      tokens[i].str[j] = substr_start[j];
+	      }
+        printf("remember the token.str size is just 32, deal with it!\n");
         switch (rules[i].token_type) {
           default: printf("hello, there still left somthing to do\n");//TODO();
         }
