@@ -86,9 +86,9 @@ static int cmd_p_file(char* args){
   uint32_t num1; char str2[512];
   
   while(fscanf(fp,"%u %s",&num1,str2) != EOF){
-    printf("reached!\n");
+    
     if(num1 == expr_val(str2)) printf("ture\n");
-    else printf("false: str1: %u, str2: %s\n",num1,str2);
+    else printf("false: str1: %u,val_compute:%u str2: %s\n",num1,expr_val(str2),str2);
   }
   return 0;
 }
