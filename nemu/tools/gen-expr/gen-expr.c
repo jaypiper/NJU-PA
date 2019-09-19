@@ -21,6 +21,11 @@ static char gen_rand_op(){
     default: return '/'; break;
   }
 }
+static void space(){
+  uint32_t sp_num = rand() % 5;
+  for(int i = 0; i < sp_num; i++)buf[buf_position++] = ' ';
+  return;
+}
 static inline void gen_rand_expr() {
   
   //printf("position: %d\n",buf_position);
@@ -29,7 +34,8 @@ static inline void gen_rand_expr() {
  
   switch(rand() % 4){
     case 0: //分配两种情况使得表达式长度收敛
-    case 1: while(b != 0){ b /= 10; bit_num ++; }
+    case 1: space();
+            while(b != 0){ b /= 10; bit_num ++; }
             for(int i = bit_num - 1; i >= 0; i --){ 
               buf[buf_position + i] = (a % 10) + '0';
               a /= 10;              
@@ -37,10 +43,13 @@ static inline void gen_rand_expr() {
             if(bit_num == 0) buf[buf_position++]='0';
             //printf("case 0\n");
             buf_position += bit_num;
+            space();
             break;
-    case 2: buf[buf_position++] = '(';  
+    case 2: space();
+            buf[buf_position++] = '(';  
             gen_rand_expr();
             buf[buf_position++] = ')';   
+            space();
             break;
     default:  gen_rand_expr(); buf[buf_position++] = gen_rand_op(); gen_rand_expr(); 
   }

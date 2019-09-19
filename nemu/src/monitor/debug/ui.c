@@ -85,8 +85,9 @@ static int cmd_p_file(char* args){
   FILE *fp = fopen(args, "r");
   uint32_t num1; char str2[512];
   
-  while(fscanf(fp,"%u %s",&num1,str2) != EOF){
-    
+  while(fscanf(fp,"%u",&num1) != EOF){
+    char* return_val = fgets(str2,512,fp);
+    printf("return_val: %s\n",return_val);
     if(num1 == expr_val(str2))  ;
     else printf("false: str1: %u,val_compute:%u str2: %s\n",num1,expr_val(str2),str2);
   }
