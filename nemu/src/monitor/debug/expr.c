@@ -118,6 +118,7 @@ static uint32_t compute_num(uint32_t i){
   return num;
 }
 //int iter=0;
+
 static uint32_t eval(int beg, int end){
   //++iter;
   //printf("at beg: %d, end: %d\n",beg,end); //测试代码
@@ -147,6 +148,7 @@ static uint32_t eval(int beg, int end){
   if(main_op == 0 && tokens[beg].type == '(' && tokens[end].type == ')')return eval(beg+1,end-1);
   uint32_t val1 = eval(beg, main_op-1);
   uint32_t val2 = eval(main_op + 1, end);
+  printf("%d %d",val1,val2);
   switch(tokens[main_op].type){
     case '+': return val1 + val2;
     case '-': return val1 - val2;
@@ -161,7 +163,7 @@ uint32_t expr(char *e, bool *success) {
     return 0;
   }
 
-  printf("answer is %d\n",eval(0,nr_token-1));
+  printf("%d\n",eval(0,nr_token-1));
   /* TODO: Insert codes to evaluate the expression. */
   
   //TODO();
