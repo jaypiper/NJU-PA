@@ -59,7 +59,7 @@ typedef struct token {
   char str[32];
 } Token;
 
-static Token tokens[32] __attribute__((used)) = {};
+static Token tokens[512] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
 static bool make_token(char *e) {
@@ -169,4 +169,18 @@ uint32_t expr(char *e, bool *success) {
   //TODO();
 
   return 0;
+}
+
+uint32_t expr_val(char* e){
+  make_token(e);
+  return eval(0,nr_token-1);
+}
+
+uint32_t atoui(char* str){
+  uint32_t num = 0;
+  while(*str){
+    num += *str - '0';
+    num *= 10;
+  }
+  return num;
 }

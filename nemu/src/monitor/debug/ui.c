@@ -80,6 +80,16 @@ static int cmd_p(char* args){
   expr(args,&judge);
   return 0;
 }
+/*  打开文件  */
+static int cmd_p_file(char* args){
+  FILE *fp = fopen(args, "r");
+  char str1[512], str2[512];
+  while(fscanf(fp,"%s %s",str1,str2)){
+    if(atoui(str1) == expr_eval(str2)) printf("ture\n");
+    else printf("false: str1: %s, str2: %s\n",str1,str2);
+  }
+  return 0;
+}
 
 static struct {
   char *name;
@@ -93,6 +103,7 @@ static struct {
   { "info", "print the condition of the program, 'r' for regester and 'w' for watching", cmd_info},
   { "x", "scan the memory, two extra arguments are needed, one for the expected byte number of the address, and one for expression which indicator the begging of the address", cmd_x},
   { "p", "expression evalueation", cmd_p},
+  { "p_file", "expression evaluation in file", cmd_p_file},
 
   /* TODO: Add more commands */
 
