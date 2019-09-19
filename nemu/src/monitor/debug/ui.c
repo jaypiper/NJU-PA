@@ -84,6 +84,7 @@ static int cmd_p(char* args){
 static int cmd_p_file(char* args){
   FILE *fp = fopen(args, "r");
   char str1[512], str2[512];
+  printf("reached!\n");
   while(fscanf(fp,"%s %s",str1,str2)){
     if(atoui(str1) == expr_val(str2)) printf("ture\n");
     else printf("false: str1: %s, str2: %s\n",str1,str2);
