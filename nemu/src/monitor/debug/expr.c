@@ -89,7 +89,7 @@ static bool make_token(char *e) {
 	        tokens[nr_token].str[j] = substr_start[j];
 	      }
         nr_token++;
-        printf("remember the token.str size is just 32, deal with it!\n");
+        //printf("remember the token.str size is just 32, deal with it!\n");
         //下面先注释掉，后面记得实现
         // switch (rules[i].token_type) {
         //   default: printf("hello, there still left somthing to do\n");//TODO();
@@ -104,7 +104,7 @@ static bool make_token(char *e) {
       return false;
     }
   }
-
+  
   return true;
 }
 
