@@ -83,12 +83,12 @@ static int cmd_p(char* args){
 /*  打开文件  */
 static int cmd_p_file(char* args){
   FILE *fp = fopen(args, "r");
-  char str1[512], str2[512];
+  uint32_t num1; char str2[512];
   
-  while(fscanf(fp,"%s %s",str1,str2)){
+  while(fscanf(fp,"%u %s",&num1,str2)){
     printf("reached!\n");
-    if(atoui(str1) == expr_val(str2)) printf("ture\n");
-    else printf("false: str1: %s, str2: %s\n",str1,str2);
+    if(num1 == expr_val(str2)) printf("ture\n");
+    else printf("false: str1: %u, str2: %s\n",num1,str2);
   }
   return 0;
 }
