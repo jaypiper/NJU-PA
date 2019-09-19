@@ -148,7 +148,7 @@ static uint32_t eval(int beg, int end){
   if(main_op == 0 && tokens[beg].type == '(' && tokens[end].type == ')')return eval(beg+1,end-1);
   uint32_t val1 = eval(beg, main_op-1);
   uint32_t val2 = eval(main_op + 1, end);
-  printf("%d %d",val1,val2);
+  //printf("%d %d",val1,val2);
   switch(tokens[main_op].type){
     case '+': return val1 + val2;
     case '-': return val1 - val2;
