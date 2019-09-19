@@ -14,8 +14,7 @@ static uint32_t gen_rand_num(){
 }
 static char gen_rand_op(){
 
-  int op_rand = rand() % 4;
-  switch(op_rand){
+  switch(rand() % 4){
     case 0: return '+'; break;
     case 1: return '-'; break;
     case 2: return '*'; break;
@@ -35,6 +34,7 @@ static inline void gen_rand_expr() {
               buf[buf_position + i] = (a % 10) + '0';
               a /= 10;              
             }
+            if(bit_num == 0) buf[buf_position++]='0';
             //printf("case 0\n");
             buf_position += bit_num;
             break;
