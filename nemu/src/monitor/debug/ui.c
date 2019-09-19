@@ -88,7 +88,7 @@ static int cmd_p_file(char* args){
   while(fscanf(fp,"%u",&num1) != EOF){
     char* return_val = fgets(str2,512,fp);
     printf("return_val: %s\n",return_val);
-    if(num1 == expr_val(str2))  ;
+    if(num1 == expr_val(str2)) printf("true\n");
     else printf("false: str1: %u,val_compute:%u str2: %s\n",num1,expr_val(str2),str2);
   }
   return 0;
