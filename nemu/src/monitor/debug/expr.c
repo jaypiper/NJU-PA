@@ -7,8 +7,8 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, NUMBER = 512, TK_EQ
-
+  TK_NOTYPE = 256, NUMBER = 512, TK_EQ = 257, TK_SOE = 258, TK_AND = 259, HEX = 260, REG = 261, NEG = 262, ADDRESS = 263,
+  TK_NOTEQ = 264,
   /* TODO: Add more token types */
 
 };
@@ -23,6 +23,8 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
+  {"0x(0|1|2|3|4|5|6|7|8|9)+", HEX},
+  {"$([A-Z]|[a-z]|[0-9])+", REG},
   {"(0|1|2|3|4|5|6|7|8|9)+", NUMBER},
   {"\\(", '('},
   {"\\)", ')'},
@@ -30,7 +32,10 @@ static struct rule {
   {"/", '/'},
   {"-", '-'},
   {"\\+", '+'},         // plus
-  {"==", TK_EQ}         // equal
+  {"==", TK_EQ},        // equal
+  {"!=", TK_NOTEQ},
+  {"<=", TK_SOE},             
+  {"&&", TK_AND}
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
@@ -111,12 +116,36 @@ static bool make_token(char *e) {
 
 static uint32_t compute_num(uint32_t i){
   uint32_t num = 0;
-  for(int j = 0; j < 32 && tokens[i].str[j] != 0; j++){
-    num *= 10;
-    num += tokens[i].str[j]-'0';
+  if(tokens[i].type == NUMBER || tokens[i].type == NEG){
+      for(int j = 0; j < 32 && tokens[i].str[j] != 0; j++){
+          num *= 10;
+          num += tokens[i].str[j]-'0';
+      }
+      if(tokens[i].type == NEG) num = 0 - num;
+  
   }
+  else if(tokens[i].type == ADDRESS){
+      if(tokens[i].str[1] == 'x'){
+          for(int j = 0; j < 32 && tokens[j].str[j] != 0; j++){
+              num *= 16;
+	      if(tokens[i].str[j] <= '9') num += tokens[i].str[j] - '0';
+	      else if(tokens[i].str[j] <= 'Z') num += tokens[i].str[j] - 'A';
+	      else if(tokens[i].str[j] <= 'z') num += tokens[i].str[j] - 'a';
+	  }
+      }
+
+      else{
+          for( int j = 0; j < 32 && tokens[i].str[j] != 0; j++){
+		  num *= 10;
+		  num += tokens[i].str[j] - '0';
+	  }
+      }
+      num = *((int *) (long long)num);
+  }
+ 
   return num;
 }
+
 //int iter=0;
 
 static uint32_t eval(int beg, int end){
@@ -124,15 +153,27 @@ static uint32_t eval(int beg, int end){
   //printf("at beg: %d, end: %d\n",beg,end); //测试代码
   //if(iter>=20)return 0;
   if(beg > end)return 0;
+  
   /* 处理负号 */
+  int pre_type = 1; //1表示数字，0表示符号
   for(int i = beg; i <= end; i++){
-    if(tokens[i].type == '-'){
-      if(i == beg||tokens[i-1].type == '+'||tokens[i-1].type == '-'||tokens[i-1].type == '*'||tokens[i-1].type == '/'){
+    if(tokens[i].type == '-' && (i == beg || pre_type == 0)){
         tokens[i].type = TK_NOTYPE;
-        for(int j = 0; j < 32 && tokens[i+1].str[j] != 0; j++) tokens[i+1].str[j] = 2 * '0' - tokens[i+1].str[j];
-      }
+	      tokens[i+1].type = NEG;
+        }
+    /* 处理解引用 */
+    else if(tokens[i].type == '*' && (i == beg || pre_type == 0)){
+        tokens[i].type = TK_NOTYPE;
+	      tokens[i+1].type = ADDRESS;
     }
+
+
+    if(tokens[i].type == NUMBER || TK_NOTYPE) pre_type = 1;
+    else pre_type = 0;
+    
   }
+ 
+	/*计算*/
   if(tokens[beg].type == TK_NOTYPE) return eval(beg+1,end);
   if(tokens[end].type == TK_NOTYPE) return eval(beg,end-1);
   if(beg == end) return compute_num(beg);
@@ -144,6 +185,7 @@ static uint32_t eval(int beg, int end){
     else if(tokens[i].type == ')') in_par_num--;
     else if((tokens[i].type == '+' || tokens[i].type == '-') && in_par_num == 0) main_op = i;
     else if((tokens[i].type == '*' || tokens[i].type == '/') && in_par_num ==0 && tokens[main_op].type != '+' && tokens[main_op].type != '-') main_op = i;
+    else if((tokens[i].type == TK_AND || tokens[i].type == TK_EQ || tokens[i].type == TK_NOTEQ || tokens[i].type == TK_SOE)&& in_par_num == 0 && tokens[main_op].type != '+' && tokens[main_op].type != '-' && tokens[main_op].type != '*' && tokens[main_op].type != '/') main_op = i;
   }
   if(main_op == 0 && tokens[beg].type == '(' && tokens[end].type == ')')return eval(beg+1,end-1);
   uint32_t val1 = eval(beg, main_op-1);
@@ -154,6 +196,10 @@ static uint32_t eval(int beg, int end){
     case '-': return val1 - val2;
     case '*': return val1 * val2;
     case '/': return val1 / val2;
+    case TK_NOTEQ:  return (val1 != val2);
+    case TK_SOE: return (val1 <= val2);
+    case TK_EQ:   return (val1 == val2);
+    case TK_AND:  return (val1 && val2); 
     default: printf("wrong at token_num: %d, token_type: %d\n",main_op,tokens[main_op].type); return 0;
   }
 }
