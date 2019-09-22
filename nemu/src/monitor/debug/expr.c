@@ -155,21 +155,23 @@ static uint32_t eval(int beg, int end){
   if(beg > end)return 0;
   
   /* 处理负号 */
-  int pre_type = 1; //1表示数字，0表示符号
+  int pre_type = 0; //1表示数字，0表示符号
   for(int i = beg; i <= end; i++){
-    if(tokens[i].type == '-' && (i == beg || pre_type == 0)){
-        tokens[i].type = TK_NOTYPE;
-	      tokens[i+1].type = NEG;
+    if(tokens[i].type == '-' && pre_type == 0){
+        tokens[i++].type = TK_NOTYPE;
+        while(tokens[i].type == TK_NOTYPE) i++;
+	      tokens[i].type = NEG;
         }
     /* 处理解引用 */
-    else if(tokens[i].type == '*' && (i == beg || pre_type == 0)){
-        tokens[i].type = TK_NOTYPE;
+    else if(tokens[i].type == '*' && pre_type == 0){
+        tokens[i++].type = TK_NOTYPE;
+        while(tokens[i].type == TK_NOTYPE) i++;
 	      tokens[i+1].type = ADDRESS;
     }
 
 
-    if(tokens[i].type == NUMBER || TK_NOTYPE) pre_type = 1;
-    else pre_type = 0;
+    if(tokens[i].type == NUMBER) pre_type = 1;
+    else if(tokens[i].type != TK_NOTYPE) pre_type = 0;
     
   }
  
