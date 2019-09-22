@@ -121,9 +121,9 @@ static uint32_t compute_num(uint32_t i){
           num *= 10;
           num += tokens[i].str[j]-'0';
       }
-      printf("num: %d, type: %d\n",num,tokens[i].type);
+  
       if(tokens[i].type == NEG) num = 0 - num;
-      printf("num: %d, type: %d\n",num,tokens[i].type);
+  
   }
   else if(tokens[i].type == ADDRESS){
       if(tokens[i].str[1] == 'x'){
