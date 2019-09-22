@@ -121,8 +121,9 @@ static uint32_t compute_num(uint32_t i){
           num *= 10;
           num += tokens[i].str[j]-'0';
       }
+      printf("num: %d, type: %d\n",num,tokens[i].type);
       if(tokens[i].type == NEG) num = 0 - num;
-  
+      printf("num: %d, type: %d\n",num,tokens[i].type);
   }
   else if(tokens[i].type == ADDRESS){
       if(tokens[i].str[1] == 'x'){
@@ -166,11 +167,9 @@ static uint32_t eval(int beg, int end){
     else if(tokens[i].type == '*' && pre_type == 0){
         tokens[i++].type = TK_NOTYPE;
         while(tokens[i].type == TK_NOTYPE) i++;
-	      tokens[i+1].type = ADDRESS;
+	      tokens[i].type = ADDRESS;
     }
-
-
-    if(tokens[i].type == NUMBER) pre_type = 1;
+    if(tokens[i].type == NUMBER || tokens[i].type == ADDRESS) pre_type = 1;
     else if(tokens[i].type != TK_NOTYPE) pre_type = 0;
     
   }
@@ -193,6 +192,7 @@ static uint32_t eval(int beg, int end){
   uint32_t val1 = eval(beg, main_op-1);
   uint32_t val2 = eval(main_op + 1, end);
   //printf("%d %d",val1,val2);
+  //处理二元运算符。 一元运算符全部压缩到运算对象中
   switch(tokens[main_op].type){
     case '+': return val1 + val2;
     case '-': return val1 - val2;
