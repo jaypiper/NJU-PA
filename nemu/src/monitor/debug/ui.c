@@ -94,6 +94,25 @@ static int cmd_p_file(char* args){
   return 0;
 }
 
+static int cmd_check(char* args){
+  WP* set_wp = new_wp();
+  for(int i = 0; i < strlen(args); i++) set_wp->expr[i] = args[i];
+  set_wp->expr[strlen(args)] = '\0';
+  wp_value[set_wp->NO] = expr_val(set_wp->expr);
+  printf("set checkpoint %d: %s",set_wp->NO,args);
+  return 0;
+}
+
+static int cmd_delete_check(char* i){
+  int wp_id = 0;
+  for(int j = 0; j < strlen(i); j++){
+    wp_id *= 10;
+    wp_id += i[j] - '0';
+  }
+  free_wp(wp_id);
+  return 0;
+}
+
 static struct {
   char *name;
   char *description;
@@ -107,6 +126,8 @@ static struct {
   { "x", "scan the memory, two extra arguments are needed, one for the expected byte number of the address, and one for expression which indicator the begging of the address", cmd_x},
   { "p", "expression evalueation", cmd_p},
   { "p_file", "expression evaluation in file", cmd_p_file},
+  { "check", "set checkpoint", cmd_check},
+  { "d", "delete the checkpoint i", cmd_delete_check},
 
   /* TODO: Add more commands */
 

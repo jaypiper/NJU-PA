@@ -218,7 +218,7 @@ uint32_t expr(char *e, bool *success) {
 
   return 0;
 }
-
+/*不要bool指针版*/
 uint32_t expr_val(char* e){
   make_token(e);
   return eval(0,nr_token-1);

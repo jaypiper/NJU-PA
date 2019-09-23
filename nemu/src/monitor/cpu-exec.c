@@ -59,7 +59,8 @@ void cpu_exec(uint64_t n) {
   }
 
     /* TODO: check watchpoints here. */
-
+    bool judge = check_watchpoint();
+    if(judge) nemu_state.state = NEMU_STOP; 
 #endif
 
   g_nr_guest_instr ++;
