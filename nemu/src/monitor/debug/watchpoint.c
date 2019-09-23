@@ -25,9 +25,9 @@ WP* new_wp(){
   if(free_ == NULL) assert(0);
   WP* ret_wp = free_;
   free_ = free_ -> next;
-  ret_wp -> next = NULL;
+  ret_wp -> next = head;
+  head = ret_wp;
   ret_wp -> expr[0] = '\0';
-
   wp_num ++;
 
   return ret_wp;
