@@ -17,5 +17,6 @@ extern uint32_t wp_value[];
 WP* new_wp();
 void free_wp(int i);
 bool check_watchpoint();
+void all_watchpoint();
 
 #endif

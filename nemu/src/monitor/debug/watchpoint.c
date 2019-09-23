@@ -55,3 +55,10 @@ bool check_watchpoint(){
   }
   return changed;
 }
+/*输出所有监视点信息*/
+void all_watchpoint(){
+  for(WP* p = head; p != NULL; p = p -> next){
+    printf("checkpoint %d: expr: %s , now value: %u\n",p->NO,p->expr,expr_val(p->expr));
+  }
+  return;
+}
