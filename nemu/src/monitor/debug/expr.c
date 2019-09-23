@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <regex.h>
 
+
 enum {
   TK_NOTYPE = 256, NUMBER = 512, TK_EQ = 257, TK_SOE = 258, TK_AND = 259, HEX = 260, REG = 261, NEG = 262, ADDRESS = 263,
   TK_NOTEQ = 264,
@@ -41,6 +42,7 @@ static struct rule {
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
 
 static regex_t re[NR_REGEX] = {};
+uint32_t isa_reg_str2val(char*);
 
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
@@ -116,6 +118,7 @@ static bool make_token(char *e) {
 
 static uint32_t compute_num(uint32_t i){
   uint32_t num = 0;
+  /*十进制数*/
   if(tokens[i].type == NUMBER || tokens[i].type == NEG){
       for(int j = 0; j < 32 && tokens[i].str[j] != 0; j++){
           num *= 10;
@@ -125,29 +128,42 @@ static uint32_t compute_num(uint32_t i){
       if(tokens[i].type == NEG) num = 0 - num;
   
   }
+  /*十进制/十六进制地址*/
   else if(tokens[i].type == ADDRESS){
       if(tokens[i].str[1] == 'x'){
-          for(int j = 0; j < 32 && tokens[j].str[j] != 0; j++){
+          for(int j = 2; j < 32 && tokens[j].str[j] != 0; j++){
               num *= 16;
-	      if(tokens[i].str[j] <= '9') num += tokens[i].str[j] - '0';
-	      else if(tokens[i].str[j] <= 'Z') num += tokens[i].str[j] - 'A';
-	      else if(tokens[i].str[j] <= 'z') num += tokens[i].str[j] - 'a';
-	  }
+	            if(tokens[i].str[j] <= '9') num += tokens[i].str[j] - '0';
+	            else if(tokens[i].str[j] <= 'Z') num += tokens[i].str[j] - 'A';
+	            else if(tokens[i].str[j] <= 'z') num += tokens[i].str[j] - 'a';
+	        }
       }
 
       else{
           for( int j = 0; j < 32 && tokens[i].str[j] != 0; j++){
-		  num *= 10;
-		  num += tokens[i].str[j] - '0';
-	  }
+		          num *= 10;
+		          num += tokens[i].str[j] - '0';
+	        }
       }
-      num = *((int *) (long long)num);
+      num = paddr_read(num,4);
+  }
+  /*十六进制数*/
+  else if(tokens[i].type == HEX){
+      for(int j = 2; j < 32 && tokens[j].str[j] != 0; j++){
+          num *= 16;
+          if(tokens[i].str[j] <= '9') num += tokens[i].str[j] - '0';
+          else if(tokens[i].str[j] <= 'Z') num += tokens[i].str[j] - 'A';
+          else if(tokens[i].str[j] <= 'z') num += tokens[i].str[j] - 'a';
+      } 
+  }
+  /*寄存器 $eax...*/
+  else if(tokens[i].type == REG){
+    num = isa_reg_str2val(&tokens[i].str[1]);
   }
  
   return num;
 }
 
-//int iter=0;
 
 static uint32_t eval(int beg, int end){
   //++iter;
@@ -169,7 +185,7 @@ static uint32_t eval(int beg, int end){
         while(tokens[i].type == TK_NOTYPE) i++;
 	      tokens[i].type = ADDRESS;
     }
-    if(tokens[i].type == NUMBER || tokens[i].type == ADDRESS) pre_type = 1;
+    if(tokens[i].type == NUMBER || tokens[i].type == ADDRESS || tokens[i].type == REG || tokens[i].type == HEX) pre_type = 1;
     else if(tokens[i].type != TK_NOTYPE) pre_type = 0;
     
   }
@@ -205,6 +221,7 @@ static uint32_t eval(int beg, int end){
     default: printf("wrong at token_num: %d, token_type: %d\n",main_op,tokens[main_op].type); return 0;
   }
 }
+
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;

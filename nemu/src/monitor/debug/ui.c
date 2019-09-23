@@ -99,7 +99,7 @@ static int cmd_check(char* args){
   for(int i = 0; i < strlen(args); i++) set_wp->expr[i] = args[i];
   set_wp->expr[strlen(args)] = '\0';
   wp_value[set_wp->NO] = expr_val(set_wp->expr);
-  printf("set checkpoint %d: %s",set_wp->NO,args);
+  printf("set checkpoint %d: %s\n",set_wp->NO,args);
   return 0;
 }
 
