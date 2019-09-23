@@ -34,12 +34,13 @@ WP* new_wp(){
 }
 
 void free_wp(int i){
-  wp_pool[i].next = free_; 
-  free_ = &wp_pool[i];
-  wp_num --;
   for(WP* p = head; p != NULL; p = p -> next){
     if(p -> next == &wp_pool[i]) p-> next = (p -> next)->next;
   }
+  wp_pool[i].next = free_; 
+  free_ = &wp_pool[i];
+  wp_num --;
+  
   return;
 }
 
