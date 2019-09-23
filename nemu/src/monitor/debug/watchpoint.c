@@ -24,8 +24,8 @@ void init_wp_pool() {
 WP* new_wp(){
   if(free_ == NULL) assert(0);
   WP* ret_wp = free_;
-  ret_wp -> next = NULL;
   free_ = free_ -> next;
+  ret_wp -> next = NULL;
   ret_wp -> expr[0] = '\0';
 
   wp_num ++;
