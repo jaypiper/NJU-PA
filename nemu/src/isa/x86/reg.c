@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 const char *regsl[] = {"eax", "ecx", "edx", "ebx", "esp", "ebp", "esi", "edi"};
 const char *regsw[] = {"ax", "cx", "dx", "bx", "sp", "bp", "si", "di"};
 const char *regsb[] = {"al", "cl", "dl", "bl", "ah", "ch", "dh", "bh"};
@@ -47,5 +48,17 @@ void isa_reg_display() {
 }
 //这里还没有实现呢QAQ , 返回名字为s的寄存器中的值
 uint32_t isa_reg_str2val(const char *s, bool *success) {
-  return 0;
+  // char reg_name[4];
+  // for(int i = 0; i < 4 && s[i] != 0; i++) reg_name[i] = s[i];
+  uint32_t num = 0;
+  bool find_reg = false;
+  for(int i = 0;i < 8;i ++){
+    if(s == regsl[i]){ find_reg = true ; num = cpu.gpr[i]._32;break;}
+    else if(s == regsw[i]){ find_reg = true ; num = cpu.gpr[i]._16; break;}
+    else if(s == regsb[i]) { find_reg = true ; num = cpu.gpr[i]._8[i/4]; break;}
+  }
+  
+  if(!find_reg) assert(0);
+
+  return num;
 }
