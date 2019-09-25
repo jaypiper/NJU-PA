@@ -10,7 +10,7 @@ static char buf[65536];
 static uint32_t buf_position = 0;
 static uint32_t gen_rand_num(){
 
-  return rand()%100;
+  return rand()%1000;
 }
 static char gen_rand_op(){
 
@@ -22,7 +22,7 @@ static char gen_rand_op(){
   }
 }
 static void space(){
-  uint32_t sp_num = rand() % 5;
+  uint32_t sp_num = rand() % 3;
   for(int i = 0; i < sp_num; i++)buf[buf_position++] = ' ';
   return;
 }
@@ -59,7 +59,7 @@ static char code_buf[65536];
 static char *code_format =
 "#include <stdio.h>\n"
 "int main() { "
-"  unsigned result = %s; "
+"  unsigned result = %s + (unsigned)0; "
 "  printf(\"%%u\\n\", result); "
 "  return 0; "
 "}";
