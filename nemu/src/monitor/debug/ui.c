@@ -78,7 +78,7 @@ static int cmd_x(char *args){
 
 static int cmd_p(char* args){
   bool judge = true;
-  
+  for(int i = 0; i < 10000; i++){ printf("hello!");}
   printf("%u\n",expr(args,&judge));
   return 0;
 }
