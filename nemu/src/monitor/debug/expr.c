@@ -82,8 +82,8 @@ static bool make_token(char *e) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
-        Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
-            i, rules[i].regex, position, substr_len, substr_len, substr_start);
+        /*Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
+            i, rules[i].regex, position, substr_len, substr_len, substr_start);*/
         position += substr_len;
 
         /* TODO: Now a new token is recognized with rules[i]. Add codes
@@ -152,7 +152,7 @@ static uint32_t compute_num(uint32_t i){
   }
   /*十六进制数*/
   else if(tokens[i].type == HEX){
-      for(int j = 2; j < 32 && tokens[j].str[j] != 0; j++){
+      for(int j = 2; j < 32 && tokens[i].str[j] != 0; j++){
           num *= 16;
           if(tokens[i].str[j] <= '9') num += tokens[i].str[j] - '0';
           else if(tokens[i].str[j] <= 'Z') num += tokens[i].str[j] - 'A';
