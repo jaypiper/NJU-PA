@@ -232,12 +232,11 @@ uint32_t expr(char *e, bool *success) {
     return 0;
   }
   *success = true;
-  printf("%u\n",eval(0,nr_token-1));
+  return eval(0,nr_token-1);
   /* TODO: Insert codes to evaluate the expression. */
   
   //TODO();
 
-  return 0;
 }
 /*不要bool指针版*/
 uint32_t expr_val(char* e){
