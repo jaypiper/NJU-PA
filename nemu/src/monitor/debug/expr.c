@@ -145,7 +145,9 @@ static uint32_t compute_num(uint32_t i){
 		          num += tokens[i].str[j] - '0';
 	        }
       }
+     
       num = paddr_read(num,4);
+       printf("num: %d",num);
   }
   /*十六进制数*/
   else if(tokens[i].type == HEX){
