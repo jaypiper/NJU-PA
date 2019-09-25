@@ -131,7 +131,7 @@ static uint32_t compute_num(uint32_t i){
   /*十进制/十六进制地址*/
   else if(tokens[i].type == ADDRESS){
       if(tokens[i].str[1] == 'x'){
-          for(int j = 2; j < 32 && tokens[j].str[j] != 0; j++){
+          for(int j = 2; j < 32 && tokens[i].str[j] != 0; j++){
               num *= 16;
 	            if(tokens[i].str[j] <= '9') num += tokens[i].str[j] - '0';
 	            else if(tokens[i].str[j] <= 'Z') num += tokens[i].str[j] - 'A';
