@@ -50,7 +50,7 @@ bool check_watchpoint(){
   for(WP* p = head; p != NULL; p = p -> next){
     uint32_t new_val = expr_val(p -> expr);
     if(new_val != wp_value[p->NO]) {
-      printf("checkpoint %d: \n old value: %u  ,  new value: %u\n",p -> NO,wp_value[p->NO],new_val);
+      printf("checkpoint %d: expr: %s \n old value: %u  ,  new value: %u\n",p -> NO,p->expr,wp_value[p->NO],new_val);
       wp_value[p->NO] = new_val;
       changed = true;
     }
