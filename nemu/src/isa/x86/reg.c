@@ -46,7 +46,7 @@ void isa_reg_display() {
     printf("%s: 0x%x  %d\n",regsl[i],cpu.gpr[i]._32,cpu.gpr[i]._32);
   }
 }
-//这里还没有实现呢QAQ , 返回名字为s的寄存器中的值
+// 返回名字为s的寄存器中的值
 uint32_t isa_reg_str2val(const char *s, bool *success) {
   // char reg_name[4];
   // for(int i = 0; i < 4 && s[i] != 0; i++) reg_name[i] = s[i];
@@ -58,7 +58,7 @@ uint32_t isa_reg_str2val(const char *s, bool *success) {
     else if(s == regsb[i]) { find_reg = true ; num = cpu.gpr[i]._8[i/4]; break;}
   }
   
-  if(!find_reg) assert(0);
+  if(!find_reg) ;//assert(0);
 
   return num;
 }
