@@ -96,10 +96,13 @@ static int cmd_p_file(char* args){
 }
 
 static int cmd_check(char* args){
+  bool success_set_check = false;
+  uint32_t set_value = expr(args,&success_set_check);
+  if(!success_set_check) { printf("set checkpoint filed: wrong expression!\n"); return 0;}
   WP* set_wp = new_wp();
   for(int i = 0; i < strlen(args); i++) set_wp->expr[i] = args[i];
   set_wp->expr[strlen(args)] = '\0';
-  wp_value[set_wp->NO] = expr_val(set_wp->expr);
+  wp_value[set_wp->NO] = set_value;
   printf("set checkpoint %d: %s\n",set_wp->NO,args);
   return 0;
 }
