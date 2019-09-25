@@ -53,7 +53,7 @@ uint32_t isa_reg_str2val(const char *s, bool *success) {
   uint32_t num = 0;
   bool find_reg = false;
   for(int i = 0;i < 8;i ++){
-    printf("%s\n",regsl[i]);
+    printf("%s:: %s\n",regsl[i],s);
     if(s == regsl[i]){ find_reg = true ; num = cpu.gpr[i]._32;break;}
     else if(s == regsw[i]){ find_reg = true ; num = cpu.gpr[i]._16; break;}
     else if(s == regsb[i]) { find_reg = true ; num = cpu.gpr[i]._8[i/4]; break;}
