@@ -58,7 +58,7 @@ uint32_t isa_reg_str2val(const char *s, bool *success) {
     else if(!strcmp(s,regsl[i])){ find_reg = true ; num = cpu.gpr[i]._16; break;}
     else if(!strcmp(s,regsl[i])) { find_reg = true ; num = cpu.gpr[i]._8[i/4]; break;}
   }
-  
+  *success = true;
   if(!find_reg) *success = false;
 
   return num;
