@@ -42,7 +42,7 @@ static struct rule {
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
 
 static regex_t re[NR_REGEX] = {};
-uint32_t isa_reg_str2val(char*);
+uint32_t isa_reg_str2val(char*,bool*);
 
 /* Rules are used for many times.
  * Therefore we compile them only once before any usage.
@@ -161,7 +161,8 @@ static uint32_t compute_num(uint32_t i){
   }
   /*寄存器 $eax...*/
   else if(tokens[i].type == REG){
-    num = isa_reg_str2val(&tokens[i].str[1]);
+    bool judge = false;
+    num = isa_reg_str2val(&tokens[i].str[1],&judge);
   }
  
   return num;
