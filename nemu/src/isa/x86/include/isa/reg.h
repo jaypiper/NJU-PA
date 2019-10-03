@@ -33,6 +33,7 @@ typedef struct {
       rtlreg_t eax, ecx, edx, ebx, esp, ebp, esi, edi;
     };
   };
+  bool CF, ZF, SF, IF, OF;
   vaddr_t pc;
 
 } CPU_state;
