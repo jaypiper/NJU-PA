@@ -300,6 +300,10 @@ make_DHelper(out_a2dx) {
   print_Dop(id_dest->str, OP_STR_SIZE, "(%%dx)");
 }
 
+make_DHelper(call_f) {
+
+}
+
 void operand_write(Operand *op, rtlreg_t* src) {
   if (op->type == OP_TYPE_REG) { rtl_sr(op->reg, src, op->width); }
   else if (op->type == OP_TYPE_MEM) { rtl_sm(&op->addr, src, op->width); }
