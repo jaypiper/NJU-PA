@@ -82,6 +82,7 @@ char* get_mainargs(void) {
 }
 
 int init_monitor(int argc, char *argv[]) {
+  is_batch_mode = false;
   /* Perform some global initialization. */
 
   /* Parse arguments. */
