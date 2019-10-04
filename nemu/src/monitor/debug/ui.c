@@ -164,10 +164,10 @@ static int cmd_help(char *args) {
 }
 
 void ui_mainloop(int is_batch_mode) {
-  if (is_batch_mode) {
-    cmd_c(NULL);
-    return;
-  }
+  // if (is_batch_mode) {
+  //   cmd_c(NULL);
+  //   return;
+  // }
 
   for (char *str; (str = rl_gets()) != NULL; ) {
     /*读取到一条指令*/
