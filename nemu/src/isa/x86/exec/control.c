@@ -30,7 +30,7 @@ make_EHelper(call) {
   printf("goal:%x\n",decinfo.jmp_pc);
   rtl_push(pc);
   rtl_j(decinfo.jmp_pc);
-  
+  printf("pc: %x\n",*pc);
   print_asm("call %x", decinfo.jmp_pc);
 }
 
