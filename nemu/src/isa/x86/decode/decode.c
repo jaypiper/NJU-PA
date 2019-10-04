@@ -11,7 +11,7 @@ static inline make_DopHelper(I) {
   op->type = OP_TYPE_IMM;
   op->imm = instr_fetch(pc, op->width);
   rtl_li(&op->val, op->imm);
-
+  printf("\nreacded!\n");
   print_Dop(op->str, OP_STR_SIZE, "$0x%x", op->imm);
 }
 
