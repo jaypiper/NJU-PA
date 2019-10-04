@@ -187,7 +187,7 @@ make_DHelper(test_I) {
 
 make_DHelper(SI2E) {
   printf("pre_pc:%x\n",*pc);
-  assert(id_dest->width == 2 || id_dest->width == 4);
+  //assert(id_dest->width == 2 || id_dest->width == 4);
   decode_op_rm(pc, id_dest, true, NULL, false);
   id_src->width = 1;
   decode_op_SI(pc, id_src, true);
