@@ -13,7 +13,7 @@ static char *mainargs = "";
 static char *log_file = NULL;
 static char *diff_so_file = NULL;
 static char *img_file = NULL;
-static int is_batch_mode = false;
+static int is_batch_mode = true;
 
 static inline void welcome() {
 #ifdef DEBUG
