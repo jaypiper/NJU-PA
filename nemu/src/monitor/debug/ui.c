@@ -78,8 +78,8 @@ static int cmd_x(char *args){
 
 static int cmd_p(char* args){
   bool judge = true;
-
-  printf("%u\n",expr(args,&judge));
+  uint32_t val = expr(args,&judge);
+  printf("%u   %x\n",val,val);
   return 0;
 }
 /*  打开文件  */
