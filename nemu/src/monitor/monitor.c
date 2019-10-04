@@ -86,8 +86,10 @@ int init_monitor(int argc, char *argv[]) {
 
   /* Parse arguments. */
   parse_args(argc, argv);
-  is_batch_mode = false;
+
+  //is_batch_mode = false;
   /* Open the log file. */
+  
   init_log(log_file);
 
   /* Load the image to memory. */
