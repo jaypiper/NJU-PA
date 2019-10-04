@@ -14,7 +14,9 @@ make_EHelper(and) {
 }
 
 make_EHelper(xor) {
+  printf("1: %x,  2: %x\n",id_src -> val, id_dest ->val);
   id_dest -> val = c_xor(id_src -> val, id_dest -> val);
+  printf("1: %x,  2: %x\n",id_src -> val, id_dest ->val);
   print_asm_template2(xor);
 }
 
