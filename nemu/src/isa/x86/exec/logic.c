@@ -14,9 +14,11 @@ make_EHelper(and) {
 }
 
 make_EHelper(xor) {
-  printf("1: %x,  2: %x\n",id_src -> val, id_dest ->val);
   id_dest -> val = c_xor(id_src -> val, id_dest -> val);
-  printf("1: %x,  2: %x\n",id_src -> val, id_dest ->val);
+  if(id_dest -> type == OP_TYPE_REG)
+    reg_l(id_dest -> reg) = id_dest -> val;
+  else if(id_dest -> type == OP_TYPE_MEM)
+    vaddr_write(id_dest -> addr, id_dest -> val, id_dest -> width);
   print_asm_template2(xor);
 }
 
