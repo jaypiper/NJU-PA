@@ -14,7 +14,7 @@ make_EHelper(and) {
 }
 
 make_EHelper(xor) {
-  //id_dest -> val = c_xor(id_src -> val, id_dest -> val);
+  id_dest -> val = c_xor(id_src -> val, id_dest -> val);
   print_asm_template2(xor);
 }
 
