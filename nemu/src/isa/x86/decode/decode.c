@@ -31,8 +31,8 @@ static inline make_DopHelper(SI) {
    *
    op->simm = ???
    */
-  TODO();
-
+  //TODO(); pa2.1
+  op -> simm = instr_fetch(pc,1);
   rtl_li(&op->val, op->simm);
 
   print_Dop(op->str, OP_STR_SIZE, "$0x%x", op->simm);
@@ -300,9 +300,12 @@ make_DHelper(out_a2dx) {
   print_Dop(id_dest->str, OP_STR_SIZE, "(%%dx)");
 }
 
-make_DHelper(call_f) {
 
-}
+
+// make_DHelper(push_I) {
+//   decode_op_I(pc, id_src,true);
+//   rtl_push(id_src);
+// }
 
 void operand_write(Operand *op, rtlreg_t* src) {
   if (op->type == OP_TYPE_REG) { rtl_sr(op->reg, src, op->width); }

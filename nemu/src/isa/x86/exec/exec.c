@@ -64,7 +64,7 @@ static OpcodeEntry opcode_table [512] = {
   /* 0x24 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x28 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x2c */	EMPTY, EMPTY, EMPTY, EMPTY,
-  /* 0x30 */	EMPTY, EMPTY, EMPTY, EMPTY,
+  /* 0x30 */	EMPTY, IDEX(G2E,xor), EMPTY, EMPTY, //todo5 --done
   /* 0x34 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x38 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x3c */	EMPTY, EMPTY, EMPTY, EMPTY,
@@ -73,18 +73,18 @@ static OpcodeEntry opcode_table [512] = {
   /* 0x48 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x4c */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x50 */	EMPTY, EMPTY, EMPTY, EMPTY,
-  /* 0x54 */	EMPTY, EMPTY, EMPTY, EMPTY,
+  /* 0x54 */	EMPTY, IDEX(r,push), EMPTY, EMPTY,    //todo1 --done?
   /* 0x58 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x5c */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x60 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x64 */	EMPTY, EMPTY, EX(operand_size), EMPTY,
-  /* 0x68 */	EMPTY, EMPTY, EMPTY, EMPTY,
+  /* 0x68 */	IDEX(I,push), EMPTY, EMPTY, EMPTY,   //todo2 --done
   /* 0x6c */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x70 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x74 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x78 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x7c */	EMPTY, EMPTY, EMPTY, EMPTY,
-  /* 0x80 */	IDEXW(I2E, gp1, 1), IDEX(I2E, gp1), EMPTY, IDEX(SI2E, gp1),
+  /* 0x80 */	IDEXW(I2E, gp1, 1), IDEX(I2E, gp1), EMPTY, IDEX(SI2E, gp1), //todo4
   /* 0x84 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0x88 */	IDEXW(mov_G2E, mov, 1), IDEX(mov_G2E, mov), IDEXW(mov_E2G, mov, 1), IDEX(mov_E2G, mov),
   /* 0x8c */	EMPTY, EMPTY, EMPTY, EMPTY,
@@ -100,7 +100,7 @@ static OpcodeEntry opcode_table [512] = {
   /* 0xb4 */	IDEXW(mov_I2r, mov, 1), IDEXW(mov_I2r, mov, 1), IDEXW(mov_I2r, mov, 1), IDEXW(mov_I2r, mov, 1),
   /* 0xb8 */	IDEX(mov_I2r, mov), IDEX(mov_I2r, mov), IDEX(mov_I2r, mov), IDEX(mov_I2r, mov),
   /* 0xbc */	IDEX(mov_I2r, mov), IDEX(mov_I2r, mov), IDEX(mov_I2r, mov), IDEX(mov_I2r, mov),
-  /* 0xc0 */	IDEXW(gp2_Ib2E, gp2, 1), IDEX(gp2_Ib2E, gp2), EMPTY, EMPTY,
+  /* 0xc0 */	IDEXW(gp2_Ib2E, gp2, 1), IDEX(gp2_Ib2E, gp2), EMPTY, EX(ret),
   /* 0xc4 */	EMPTY, EMPTY, IDEXW(mov_I2E, mov, 1), IDEX(mov_I2E, mov),
   /* 0xc8 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xcc */	EMPTY, EMPTY, EMPTY, EMPTY,
@@ -110,7 +110,7 @@ static OpcodeEntry opcode_table [512] = {
   /* 0xdc */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xe0 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xe4 */	EMPTY, EMPTY, EMPTY, EMPTY,
-  /* 0xe8 */	IDEX(call_f, call), EMPTY, EMPTY, EMPTY,
+  /* 0xe8 */	IDEX(J, call), EMPTY, EMPTY, EMPTY,  //todo3
   /* 0xec */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xf0 */	EMPTY, EMPTY, EMPTY, EMPTY,
   /* 0xf4 */	EMPTY, EMPTY, IDEXW(E, gp3, 1), IDEX(E, gp3),
