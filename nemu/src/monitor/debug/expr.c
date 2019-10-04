@@ -135,8 +135,8 @@ static uint32_t compute_num(uint32_t i){
           for(int j = 2; j < 32 && tokens[i].str[j] != 0; j++){
               num *= 16;
 	            if(tokens[i].str[j] <= '9') num += tokens[i].str[j] - '0';
-	            else if(tokens[i].str[j] <= 'Z') num += tokens[i].str[j] - 'A';
-	            else if(tokens[i].str[j] <= 'z') num += tokens[i].str[j] - 'a';
+	            else if(tokens[i].str[j] <= 'Z') num += tokens[i].str[j] - 'A' + 10;
+	            else if(tokens[i].str[j] <= 'z') num += tokens[i].str[j] - 'a' + 10;
 	        }
       }
 
@@ -155,8 +155,8 @@ static uint32_t compute_num(uint32_t i){
       for(int j = 2; j < 32 && tokens[i].str[j] != 0; j++){
           num *= 16;
           if(tokens[i].str[j] <= '9') num += tokens[i].str[j] - '0';
-          else if(tokens[i].str[j] <= 'Z') num += tokens[i].str[j] - 'A';
-          else if(tokens[i].str[j] <= 'z') num += tokens[i].str[j] - 'a';
+          else if(tokens[i].str[j] <= 'Z') num += tokens[i].str[j] - 'A' + 10;
+          else if(tokens[i].str[j] <= 'z') num += tokens[i].str[j] - 'a' + 10;
       } 
   }
   /*寄存器 $eax...*/

@@ -64,8 +64,8 @@ static int cmd_x(char *args){
   for( ;i<strlen(args);i++){
      ad*=16;
      if(args[i]<='9') {ad+=args[i]-'0';}
-     else if(args[i]<='Z') {ad+=args[i]-'A';}
-     else {ad+=args[i]-'a';}
+     else if(args[i]<='Z') {ad+=args[i]-'A'+10;}
+     else {ad+=args[i]-'a'+10;}
   }
   for(int j=0;j<a;j++){
     if(j%4==0) printf("\n%x:  ",ad);
