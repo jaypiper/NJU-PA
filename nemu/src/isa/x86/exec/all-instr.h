@@ -12,3 +12,4 @@ make_EHelper(push);
 make_EHelper(ret);
 make_EHelper(sub);
 make_EHelper(add);
+make_EHelper(nop);
