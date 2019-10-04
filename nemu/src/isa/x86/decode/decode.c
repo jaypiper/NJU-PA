@@ -186,6 +186,7 @@ make_DHelper(test_I) {
 }
 
 make_DHelper(SI2E) {
+  printf("pre_pc:%x\n",*pc);
   assert(id_dest->width == 2 || id_dest->width == 4);
   decode_op_rm(pc, id_dest, true, NULL, false);
   id_src->width = 1;
@@ -193,6 +194,7 @@ make_DHelper(SI2E) {
   if (id_dest->width == 2) {
     id_src->val &= 0xffff;
   }
+  printf("new_pc: %x\n",*pc);
 }
 
 make_DHelper(SI_E2G) {
