@@ -8,15 +8,28 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
-  rtl_li(&ir,id_src -> val);
-  rtl_li(&s0,id_dest -> val);
-  reg_l(id_dest->reg)= c_sub(s0,ir);
+  rtl_sub(&s1,&id_src -> val,&id_dest->val);
+  operand_write(id_dest,&s1);
+  rtl_update_ZFSF(&s1,id_dest->width);
+  t0 = (ir > 0 && s0 < 0 && s1 > 0) || (ir < 0 && s0 > 0 && s1 < 0);
+  rtl_set_CF(&t0);
+  t1 = (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width)-1)))
+       && (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width) -1))) == 0 ? 0 : 1;
+  rtl_set_OF(&t1);
+ 
   print_asm_template2(sub);
 }
 
 make_EHelper(cmp) {
-  TODO();
 
+  rtl_sub(&s1,&id_src -> val,&id_dest->val);
+  operand_write(id_dest,&s1);
+  rtl_update_ZFSF(&s1,id_dest->width);
+  t0 = (ir > 0 && s0 < 0 && s1 > 0) || (ir < 0 && s0 > 0 && s1 < 0);
+  rtl_set_CF(&t0);
+  t1 = (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width)-1)))
+       && (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width) -1))) == 0 ? 0 : 1;
+  rtl_set_OF(&t1);
   print_asm_template2(cmp);
 }
 
