@@ -8,9 +8,7 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
-  printf("before: %x\n",id_dest->val);
   rtl_sub(&s1,&id_dest->val,&id_src -> val);
-  printf("after: %x\n",s1);
  
   operand_write(id_dest,&s1);
   rtl_update_ZFSF(&s1,id_dest->width);
@@ -24,8 +22,7 @@ make_EHelper(sub) {
 }
 
 make_EHelper(cmp) {
-
-  rtl_sub(&s1,&id_src -> val,&id_dest->val);
+  rtl_sub(&s1,&id_dest->val,&id_src -> val);
   operand_write(id_dest,&s1);
   printf("\n,hell02\n");
   rtl_update_ZFSF(&s1,id_dest->width);
