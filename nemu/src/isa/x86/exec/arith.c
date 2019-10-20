@@ -8,9 +8,10 @@ make_EHelper(add) {
 }
 
 make_EHelper(sub) {
+  printf("before: %d\n",id_dest->val);
   rtl_sub(&s1,&id_src -> val,&id_dest->val);
- // printf("\n%d\n",id_dest->type == OP_TYPE_REG);
-  //printf("\n%d\n",id_dest->reg);
+  printf("after: %d\n",s1);
+ 
   operand_write(id_dest,&s1);
   rtl_update_ZFSF(&s1,id_dest->width);
   t0 = (ir > 0 && s0 < 0 && s1 > 0) || (ir < 0 && s0 > 0 && s1 < 0);
