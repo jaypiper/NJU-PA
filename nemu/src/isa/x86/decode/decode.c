@@ -33,6 +33,7 @@ static inline make_DopHelper(SI) {
    */
   //TODO(); pa2.1
   op -> simm = instr_fetch(pc,op -> width);
+  if(op->width == 1) op -> simm = (int32_t)(int8_t)op -> simm;
   rtl_li(&op->val, op->simm);
 
   print_Dop(op->str, OP_STR_SIZE, "$0x%x", op->simm);
@@ -263,7 +264,7 @@ make_DHelper(J) {
   decode_op_SI(pc, id_dest, false);
   // the target address can be computed in the decode stage
   decinfo.jmp_pc = id_dest->simm + *pc;
-  printf("\n%x, %x\n",id_dest->simm,*pc);
+
 }
 
 make_DHelper(push_SI) {
