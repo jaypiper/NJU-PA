@@ -309,8 +309,7 @@ make_DHelper(out_a2dx) {
 // }
 
 void operand_write(Operand *op, rtlreg_t* src) {
-  printf("\nin_write\n");
-  if (op->type == OP_TYPE_REG) {printf("\n%d\n",*src); rtl_sr(op->reg, src, op->width); printf("\n%d\n",*src);}
-  else if (op->type == OP_TYPE_MEM) {printf("\nhello\n");rtl_sm(&op->addr, src, op->width); }
+  if (op->type == OP_TYPE_REG) { rtl_sr(op->reg, src, op->width); printf("\n%d\n",*src);}
+  else if (op->type == OP_TYPE_MEM) {rtl_sm(&op->addr, src, op->width); }
   else { assert(0); }
 }
