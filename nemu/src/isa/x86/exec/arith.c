@@ -28,7 +28,7 @@ make_EHelper(cmp) {
   t0 = (id_dest->val > 0 && id_src->val < 0 && s1 < 0) || (id_dest->val < 0 && id_src->val > 0 && s1 > 0);
   rtl_set_CF(&t0);
   t1 = (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width)-1)))
-       && (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width) -1))) == 0 ? 0 : 1;
+       && ((id_dest -> val)) & (1 << ((8*id_src -> width) -1));
   rtl_set_OF(&t1);
   print_asm_template2(cmp);
 }
