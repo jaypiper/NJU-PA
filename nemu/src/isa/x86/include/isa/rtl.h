@@ -91,4 +91,11 @@ static inline void rtl_update_ZFSF(const rtlreg_t* result, int width) {
   rtl_update_SF(result, width);
 }
 
+static inline void rtl_zero_OF(){
+  cpu.OF = 0;
+}
+static inline void rtl_zero_CF(){
+  cpu.CF = 0;
+}
+
 #endif

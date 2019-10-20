@@ -2,8 +2,10 @@
 #include "cc.h"
 
 make_EHelper(test) {
-  TODO();
-
+  rtl_and(&s0,&id_src->val, &id_dest->val);
+  rtl_update_ZFSF(&s0,id_dest->width);
+  rtl_zero_CF();
+  rtl_zero_OF();
   print_asm_template2(test);
 }
 
