@@ -9,7 +9,7 @@ make_EHelper(add) {
 
 make_EHelper(sub) {
   rtl_sub(&s1,&id_src -> val,&id_dest->val);
-  printf("\n,hell0\n");
+  printf("\n%d\n",id_dest->type == OP_TYPE_REG);
   operand_write(id_dest,&s1);
   rtl_update_ZFSF(&s1,id_dest->width);
   t0 = (ir > 0 && s0 < 0 && s1 > 0) || (ir < 0 && s0 > 0 && s1 < 0);
