@@ -25,7 +25,7 @@ make_EHelper(cmp) {
   rtl_sub(&s1,&id_dest->val,&id_src -> val);
 
   rtl_update_ZFSF(&s1,id_dest->width);
-  t0 = (id_dest->val > 0 && id_src->val < 0 && s1 > 0) || (id_dest->val < 0 && id_src->val > 0 && s1 < 0);
+  t0 = (id_dest->val > 0 && id_src->val < 0 && s1 < 0) || (id_dest->val < 0 && id_src->val > 0 && s1 > 0);
   rtl_set_CF(&t0);
   t1 = (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width)-1)))
        && (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width) -1))) == 0 ? 0 : 1;
@@ -38,7 +38,7 @@ make_EHelper(inc) {
   rtl_add(&s1,&id_dest->val,&id_src -> val);
   operand_write(id_dest,&s1);
   rtl_update_ZFSF(&s1,id_dest->width);
-  t0 = (id_dest->val > 0 && id_src->val < 0 && s1 > 0) || (id_dest->val < 0 && id_src->val > 0 && s1 < 0);
+  t0 = (id_dest->val > 0 && id_src->val < 0 && s1 < 0) || (id_dest->val < 0 && id_src->val > 0 && s1 > 0);
   rtl_set_CF(&t0);
   t1 = (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width)-1)))
        && (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width) -1))) == 0 ? 0 : 1;
