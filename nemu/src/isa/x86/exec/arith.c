@@ -23,7 +23,7 @@ make_EHelper(sub) {
 
 make_EHelper(cmp) {
   rtl_sub(&s1,&id_dest->val,&id_src -> val);
-  operand_write(id_dest,&s1);
+
   rtl_update_ZFSF(&s1,id_dest->width);
   t0 = (id_dest->val > 0 && id_src->val < 0 && s1 > 0) || (id_dest->val < 0 && id_src->val > 0 && s1 < 0);
   rtl_set_CF(&t0);
