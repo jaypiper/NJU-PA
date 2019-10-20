@@ -8,8 +8,10 @@ make_EHelper(test) {
 }
 
 make_EHelper(and) {
-  TODO();
-
+  //TODO();
+  rtl_li(&ir,id_src -> val);
+  rtl_li(&s0,id_dest -> val);
+  reg_l(id_dest->reg) = c_and(ir,s0);
   print_asm_template2(and);
 }
 
