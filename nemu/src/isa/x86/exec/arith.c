@@ -1,9 +1,14 @@
 #include "cpu/exec.h"
 
 make_EHelper(add) {
-  rtl_li(&ir,id_src -> val);
-  rtl_li(&s0,id_dest -> val);
-  reg_l(id_dest->reg)= c_add(s0,ir);
+  rtl_add(&s1,&id_dest->val,&id_src -> val);
+  operand_write(id_dest,&s1);
+  rtl_update_ZFSF(&s1,id_dest->width);
+  t0 = (s1 < id_dest->val || s1 < id_src->val);
+  rtl_set_CF(&t0);
+  t1 = (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width)-1))) && ((id_dest -> val)^s1) & (1 << ((8*id_src -> width) -1));
+  rtl_set_OF(&t1);
+  
   print_asm_template2(add);
 }
 
@@ -44,8 +49,14 @@ make_EHelper(inc) {
 }
 
 make_EHelper(dec) {
-  TODO();
-
+  id_src->val = 1;
+  rtl_sub(&s1,&id_dest->val,&id_src -> val);
+  operand_write(id_dest,&s1);
+  rtl_update_ZFSF(&s1,id_dest->width);
+  t0 = (id_dest->val < id_src->val);
+  rtl_set_CF(&t0);
+  t1 = (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width)-1))) && ((id_dest -> val)^s1) & (1 << ((8*id_src -> width) -1));
+  rtl_set_OF(&t1);
   print_asm_template1(dec);
 }
 
