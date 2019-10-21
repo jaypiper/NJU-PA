@@ -28,7 +28,7 @@ make_EHelper(cmp) {
   t1 = (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width)-1))) && ((id_dest -> val)^s1) & (1 << ((8*id_src -> width) -1));
   rtl_set_OF(&t1);
   print_asm_template2(cmp);
-  printf("sf: %d, zf: %d, of: %d, cf: %d\n",cpu.SF, cpu.ZF, cpu.OF, cpu.CF);
+  //printf("sf: %d, zf: %d, of: %d, cf: %d\n",cpu.SF, cpu.ZF, cpu.OF, cpu.CF);
 }
 
 make_EHelper(inc) {
