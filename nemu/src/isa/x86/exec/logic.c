@@ -28,7 +28,7 @@ make_EHelper(xor) {
 
 make_EHelper(or) {
   rtl_or(&s0,&id_dest->val,&id_src->val);
-  rtl_andi(&s0,&s0,0xffffffffu >> ((4-id_dest->width)*8));
+  //rtl_andi(&s0,&s0,0xffffffffu >> ((4-id_dest->width)*8));
   operand_write(id_dest,&s0);
 
   print_asm_template2(or);
