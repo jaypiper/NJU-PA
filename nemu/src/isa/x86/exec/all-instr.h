@@ -27,3 +27,4 @@ make_EHelper(leave);
 make_EHelper(inc);
 make_EHelper(dec);
 make_EHelper(adc);
+make_EHelper(or);
