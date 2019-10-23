@@ -10,19 +10,20 @@ make_EHelper(test) {
 }
 
 make_EHelper(and) {
-  //TODO();
-  rtl_li(&ir,id_src -> val);
-  rtl_li(&s0,id_dest -> val);
-  reg_l(id_dest->reg) = c_and(ir,s0);
+  rtl_and(&s0,&id_src->val, &id_dest->val);
+  rtl_andi(&s0,&s0,0xffffffffu >> ((4-id_dest->width)*8));
+  rtl_update_ZFSF(&s0,id_dest->width);
+  rtl_zero_CF();
+  rtl_zero_OF();
   print_asm_template2(and);
 }
 
 make_EHelper(xor) {
-  id_dest -> val = c_xor(id_src -> val, id_dest -> val);
-  if(id_dest -> type == OP_TYPE_REG)
-    reg_l(id_dest -> reg) = id_dest -> val;
-  else if(id_dest -> type == OP_TYPE_MEM)
-    vaddr_write(id_dest -> addr, id_dest -> val, id_dest -> width);
+  rtl_xor(&s0,&id_src->val,&id_dest->val);
+  rtl_andi(&s0,&s0,0xffffffffu >> ((4-id_dest->width)*8));
+  rtl_update_ZFSF(&s0,id_dest->width);
+  rtl_zero_CF();
+  rtl_zero_OF();
   print_asm_template2(xor);
 }
 
