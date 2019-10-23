@@ -30,7 +30,10 @@ make_EHelper(or) {
   rtl_or(&s0,&id_dest->val,&id_src->val);
   rtl_andi(&s0,&s0,0xffffffffu >> ((4-id_dest->width)*8));
   operand_write(id_dest,&s0);
-
+  t0 = 0;
+  rtl_set_CF(&t0);
+  rtl_set_OF(&t0);
+  rtl_update_ZFSF(&s0,id_dest->width);
   print_asm_template2(or);
 }
 
