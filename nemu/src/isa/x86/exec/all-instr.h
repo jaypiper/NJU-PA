@@ -39,3 +39,4 @@ make_EHelper(imul2);
 make_EHelper(jmp_rm);
 make_EHelper(not);
 make_EHelper(movsx);
+make_EHelper(mul);
