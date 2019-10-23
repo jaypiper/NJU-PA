@@ -39,10 +39,14 @@ make_EHelper(leave) {
 
 make_EHelper(cltd) {
   if (decinfo.isa.is_operand_size_16) {
-    TODO();
+    rtl_mv(&s0,&id_dest->val);
+    if((s0>>15)&1) rtl_li(&cpu.edx,0x0000FFFF);
+    else rtl_li(&cpu.edx,0);
   }
   else {
-    TODO();
+    rtl_mv(&s0,&id_dest->val);
+    if((s0>>31)&1) rtl_li(&cpu.edx,0xFFFFFFFF);
+    else rtl_li(&cpu.edx,0);
   }
 
   print_asm(decinfo.isa.is_operand_size_16 ? "cwtl" : "cltd");
