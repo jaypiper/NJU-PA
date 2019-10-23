@@ -12,6 +12,7 @@ make_EHelper(test) {
 make_EHelper(and) {
   rtl_and(&s0,&id_src->val, &id_dest->val);
   //rtl_andi(&s0,&s0,0xffffffffu >> ((4-id_dest->width)*8));
+  operand_write(id_dest,&s0);
   rtl_update_ZFSF(&s0,id_dest->width);
   rtl_zero_CF();
   rtl_zero_OF();
@@ -21,6 +22,7 @@ make_EHelper(and) {
 make_EHelper(xor) {
   rtl_xor(&s0,&id_src->val,&id_dest->val);
   //rtl_andi(&s0,&s0,0xffffffffu >> ((4-id_dest->width)*8));
+  operand_write(id_dest,&s0);
   rtl_update_ZFSF(&s0,id_dest->width);
   rtl_zero_CF();
   rtl_zero_OF();
