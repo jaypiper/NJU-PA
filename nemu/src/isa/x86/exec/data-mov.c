@@ -39,12 +39,12 @@ make_EHelper(leave) {
 
 make_EHelper(cltd) {
   if (decinfo.isa.is_operand_size_16) {
-    rtl_mv(&s0,&id_dest->val);
+    rtl_mv(&s0,&cpu.eax);
     if((s0>>15)&1) rtl_li(&cpu.edx,0x0000FFFF);
     else rtl_li(&cpu.edx,0);
   }
   else {
-    rtl_mv(&s0,&id_dest->val);
+    rtl_mv(&s0,&cpu.eax);
     if((s0>>31)&1) rtl_li(&cpu.edx,0xFFFFFFFF);
     else rtl_li(&cpu.edx,0);
   }
