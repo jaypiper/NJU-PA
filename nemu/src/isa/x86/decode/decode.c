@@ -261,10 +261,11 @@ make_DHelper(a2O) {
 }
 
 make_DHelper(J) {
-  printf("esp:  %x",cpu.esp);
+  printf("esp:  %x\n",cpu.esp);
   decode_op_SI(pc, id_dest, false);
   // the target address can be computed in the decode stage
   decinfo.jmp_pc = id_dest->simm + *pc;
+    printf("esp:  %x\n",cpu.esp);
 
 }
 
