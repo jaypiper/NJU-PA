@@ -40,11 +40,7 @@ static inline uint32_t instr_fetch(vaddr_t *pc, int len) {
 static inline void idex(vaddr_t *pc, OpcodeEntry *e) {
   if (e->decode)
     e->decode(pc);
-      printf("esp:  %x\n",cpu.esp);
-
   e->execute(pc);
-    printf("esp:  %x\n",cpu.esp);
-
 }
 
 static inline void update_pc(void) {
