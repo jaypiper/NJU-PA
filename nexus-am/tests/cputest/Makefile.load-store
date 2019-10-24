@@ -1,4 +1,4 @@
-NAME = dummy
-SRCS = tests/dummy.c
+NAME = load-store
+SRCS = tests/load-store.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
