@@ -1,1 +1,13 @@
-/Makefile.*
+!*
+.*
+!.gitignore
+*~
+*.a
+*.o
+*.d
+*.pyc
+*.ini
+*.log
+tags
+cscope.*
+build/
