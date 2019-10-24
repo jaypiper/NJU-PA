@@ -1,4 +1,4 @@
-NAME = movsx
-SRCS = tests/movsx.c
+NAME = select-sort
+SRCS = tests/select-sort.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
