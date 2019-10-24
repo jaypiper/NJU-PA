@@ -115,8 +115,8 @@ void difftest_step(vaddr_t ori_pc, vaddr_t next_pc) {
     return;
   }
 
-  ref_difftest_exec(1);
   ref_difftest_getregs(&ref_r);
+  ref_difftest_exec(1);
 for(int i = 0;i < 8; i++) printf("%d: %x  %x \n",i,ref_r.gpr[i]._32,cpu.gpr[i]._32);
   printf("pc: %x  %x\n",ref_r.pc,ori_pc);
   checkregs(&ref_r, ori_pc);
