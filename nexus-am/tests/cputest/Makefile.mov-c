@@ -1,4 +1,4 @@
-NAME = leap-year
-SRCS = tests/leap-year.c
+NAME = mov-c
+SRCS = tests/mov-c.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
