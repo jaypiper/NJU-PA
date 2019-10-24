@@ -1,4 +1,4 @@
-NAME = sub-longlong
-SRCS = tests/sub-longlong.c
+NAME = to-lower-case
+SRCS = tests/to-lower-case.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
