@@ -1,4 +1,4 @@
-NAME = sub-longlong
-SRCS = tests/sub-longlong.c
+NAME = if-else
+SRCS = tests/if-else.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
