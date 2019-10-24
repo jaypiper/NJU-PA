@@ -1,4 +1,4 @@
-NAME = min3
-SRCS = tests/min3.c
+NAME = dummy
+SRCS = tests/dummy.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
