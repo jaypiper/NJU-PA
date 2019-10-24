@@ -1,4 +1,4 @@
-NAME = quick-sort
-SRCS = tests/quick-sort.c
+NAME = shift
+SRCS = tests/shift.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
