@@ -1,4 +1,4 @@
-NAME = switch
-SRCS = tests/switch.c
+NAME = bit
+SRCS = tests/bit.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
