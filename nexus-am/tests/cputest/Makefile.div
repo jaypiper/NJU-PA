@@ -1,4 +1,4 @@
-NAME = add-longlong
-SRCS = tests/add-longlong.c
+NAME = div
+SRCS = tests/div.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
