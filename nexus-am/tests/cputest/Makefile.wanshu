@@ -1,4 +1,4 @@
-NAME = bit
-SRCS = tests/bit.c
+NAME = wanshu
+SRCS = tests/wanshu.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
