@@ -1,4 +1,4 @@
-NAME = mul-longlong
-SRCS = tests/mul-longlong.c
+NAME = sum
+SRCS = tests/sum.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
