@@ -43,3 +43,5 @@ make_EHelper(mul);
 make_EHelper(movzx);
 make_EHelper(neg);
 make_EHelper(sbb);
+make_EHelper(in);
+make_EHelper(out);
