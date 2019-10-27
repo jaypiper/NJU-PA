@@ -1,4 +1,0 @@
-NAME = fib
-SRCS = tests/fib.c
-LIBS += klib
-include /home/piper/ics2019/nexus-am/Makefile.app
