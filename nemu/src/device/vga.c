@@ -18,7 +18,7 @@ static SDL_Window *window = NULL;
 static SDL_Renderer *renderer = NULL;
 static SDL_Texture *texture = NULL;
 
-static uint32_t (*vmem) [SCREEN_W] = NULL;
+ uint32_t (*vmem) [SCREEN_W] = NULL;
 static uint32_t *screensize_port_base = NULL;
 
 static inline void update_screen() {
