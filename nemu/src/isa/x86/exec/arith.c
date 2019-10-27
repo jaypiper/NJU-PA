@@ -16,12 +16,15 @@ make_EHelper(add) {
 
 make_EHelper(sub) {
   rtl_sub(&s1,&id_dest->val,&id_src -> val);
+  if (id_dest->width != 4) {
+    rtl_andi(&s1, &s1, 0xffffffffu >> ((4 - id_dest->width) * 8));
+  }
   operand_write(id_dest,&s1);
   rtl_update_ZFSF(&s1,id_dest->width);
-  t0 = (id_dest->val < id_src->val);
-  rtl_set_CF(&t0);
-  t1 = (((id_src -> val) ^ (id_dest -> val)) & (1 << ((8*id_src -> width)-1))) && ((id_dest -> val)^s1) & (1 << ((8*id_src -> width) -1));
-  rtl_set_OF(&t1);
+  rtl_is_sub_carry(&s1,&s1,&id_dest->val);
+  rtl_set_CF(&s1);
+  rtl_is_sub_overflow(&s0, &s1, &id_dest->val, &id_src->val, id_dest->width);
+  rtl_set_OF(&s0);
  
   print_asm_template2(sub);
 }
