@@ -32,7 +32,7 @@ make_EHelper(sub) {
 
 make_EHelper(cmp) {
   rtl_sub(&s1,&id_dest->val,&id_src -> val);
-  //if(id_src->val == 0x80000000) s1 = 1;
+  if(id_src->val == 0x80000000) s1 = 1;
   if (id_dest->width != 4) {
     rtl_andi(&s1, &s1, 0xffffffffu >> ((4 - id_dest->width) * 8));
   }
