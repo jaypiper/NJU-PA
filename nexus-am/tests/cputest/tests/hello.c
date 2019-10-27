@@ -1,5 +1,5 @@
 #include<klib.h>
 int main(){
-	int a = 0;
-	printf("hello, a! %d",a);
+	int a = 110;
+	printf("hello, a! %d  ",a);
 }
