@@ -31,6 +31,7 @@ make_EHelper(sub) {
 }
 
 make_EHelper(cmp) {
+  printf("src: %x\n",id_src->val);
   rtl_sub(&s1,&id_dest->val,&id_src -> val);
   //if(id_src->val == 0x80000000) s1 = 1;
   if (id_dest->width != 4) {
@@ -40,7 +41,6 @@ make_EHelper(cmp) {
   rtl_update_ZFSF(&s1,id_dest->width);
   rtl_is_sub_carry(&s1,&s1,&id_dest->val);
   rtl_set_CF(&s1);
-  printf("src: %x\n",id_src->val);
   rtl_is_sub_overflow(&s0, &s1, &id_dest->val, &id_src->val, id_dest->width);
   rtl_set_OF(&s0);
   print_asm_template2(cmp);
