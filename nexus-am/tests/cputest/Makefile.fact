@@ -1,4 +1,4 @@
-NAME = matrix-mul
-SRCS = tests/matrix-mul.c
+NAME = fact
+SRCS = tests/fact.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
