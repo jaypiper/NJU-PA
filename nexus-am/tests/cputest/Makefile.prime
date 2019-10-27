@@ -1,4 +1,4 @@
-NAME = fact
-SRCS = tests/fact.c
+NAME = prime
+SRCS = tests/prime.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
