@@ -54,10 +54,14 @@ make_EHelper(cltd) {
 
 make_EHelper(cwtl) {
   if (decinfo.isa.is_operand_size_16) {
-    TODO();
+    rtl_mv(&s0,&cpu.eax);
+    if((s0>>7)&1) rtl_ori(&cpu.eax,&cpu.eax,0x0000FF00);
+    else rtl_andi(&cpu.eax,&cpu.eax,0xFFFF00FF);
   }
   else {
-    TODO();
+    rtl_mv(&s0,&cpu.eax);
+    if((s0>>15)&1) rtl_ori(&cpu.eax,&cpu.eax,0xFFFF0000);
+    else rtl_andi(&cpu.eax,&cpu.eax,0x0000FFFF);
   }
 
   print_asm(decinfo.isa.is_operand_size_16 ? "cbtw" : "cwtl");
