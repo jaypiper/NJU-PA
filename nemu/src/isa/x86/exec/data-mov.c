@@ -80,6 +80,16 @@ make_EHelper(movzx) {
   print_asm_template2(movzx);
 }
 
+make_EHelper(movs){
+    rtl_mv(&s0,&cpu.esi);
+    rtl_mv(&s1,&cpu.edi);
+    rtl_andi(&s0, &s0, 0xFFFFFFFFu >> 8*(4-decinfo.dest.width));  
+    rtl_andi(&s1, &s1, 0xFFFFFFFFu >> 8*(4-decinfo.dest.width));
+    rtl_lm(&s0,&s0,decinfo.dest.width);
+    rtl_sm(&s1,&s0,decinfo.dest.width);
+
+} 
+
 make_EHelper(lea) {
   operand_write(id_dest, &id_src->addr);
   print_asm_template2(lea);
