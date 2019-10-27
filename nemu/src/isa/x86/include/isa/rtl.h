@@ -44,7 +44,8 @@ static inline void rtl_is_sub_overflow(rtlreg_t* dest,
   t0 = (*src1) & (0xffffffffu >> ((4-width)*8+1));
   t1 = (~(*src2)+1) & (0xffffffffu >> ((4-width)*8+1));
   rtl_add(&t1, &t0, &t1);
-  *dest = !((!(*res)) ^ (t1 >> (width*8-1) & 1));
+  rtl_li(&t0, t1 < t0);
+  *dest = !((t0) ^ (t1 >> (width*8-1) & 1));
 }
 
 static inline void rtl_is_sub_carry(rtlreg_t* dest,
