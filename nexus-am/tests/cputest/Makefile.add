@@ -1,4 +1,4 @@
-NAME = select-sort
-SRCS = tests/select-sort.c
+NAME = add
+SRCS = tests/add.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
