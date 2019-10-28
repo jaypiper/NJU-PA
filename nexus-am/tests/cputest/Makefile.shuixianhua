@@ -1,4 +1,4 @@
-NAME = mov-c
-SRCS = tests/mov-c.c
+NAME = shuixianhua
+SRCS = tests/shuixianhua.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
