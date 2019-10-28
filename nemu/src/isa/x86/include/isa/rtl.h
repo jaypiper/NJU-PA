@@ -58,7 +58,7 @@ static inline void rtl_is_sub_overflow(rtlreg_t* dest,
 static inline void rtl_is_sub_carry(rtlreg_t* dest,
     const rtlreg_t* res, const rtlreg_t* src1) {
   // dest <- is_carry(src1 - src2)
-  *dest = (*res > *src1);
+  *dest = !(*res > *src1);
 
 }
 
