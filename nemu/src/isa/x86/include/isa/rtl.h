@@ -48,7 +48,7 @@ static inline void rtl_is_sub_overflow(rtlreg_t* dest,
   t0 = (*src1) & (0xffffffffu >> ((4-width)*8+1));
   t1 = (~(*src2)+1) & (0xffffffffu >> ((4-width)*8+1));
   // printf("src: %x\n",*src2);
-   printf("t: %x  %x\n",t0,t1);
+   //printf("t: %x  %x\n",t0,t1);
 
   rtl_add(&t1, &t0, &t1);
  // printf("t: %x  %x\n",t0,t1);
