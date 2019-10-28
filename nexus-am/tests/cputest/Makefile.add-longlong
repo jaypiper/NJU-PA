@@ -1,4 +1,4 @@
-NAME = wanshu
-SRCS = tests/wanshu.c
+NAME = add-longlong
+SRCS = tests/add-longlong.c
 LIBS += klib
 include /home/piper/ics2019/nexus-am/Makefile.app
