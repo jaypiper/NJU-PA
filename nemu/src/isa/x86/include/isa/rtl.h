@@ -52,7 +52,7 @@ static inline void rtl_is_sub_overflow(rtlreg_t* dest,
 
   rtl_add(&t1, &t0, &t1);
  // printf("t: %x  %x\n",t0,t1);
-  *dest = (((*res)) ^ (t1 >> (width*8-1) & 1));
+  *dest = ((!(*res)) ^ (t1 >> (width*8-1) & 1));
 }
 
 static inline void rtl_is_sub_carry(rtlreg_t* dest,
