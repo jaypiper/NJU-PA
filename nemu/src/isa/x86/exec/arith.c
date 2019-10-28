@@ -45,7 +45,7 @@ make_EHelper(cmp) {
   if(id_src->val == 0x80000000) rtl_li(&s0,0);
   rtl_set_OF(&s0);
   print_asm_template2(cmp);
-  printf("sf: %d, zf: %d, of: %d, cf: %d\n",cpu.SF, cpu.ZF, cpu.OF, cpu.CF);
+  //printf("sf: %d, zf: %d, of: %d, cf: %d\n",cpu.SF, cpu.ZF, cpu.OF, cpu.CF);
 }
 
 make_EHelper(inc) {
