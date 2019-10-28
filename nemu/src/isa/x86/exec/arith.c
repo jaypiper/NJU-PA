@@ -39,8 +39,10 @@ make_EHelper(cmp) {
 
   rtl_update_ZFSF(&s1,id_dest->width);
   rtl_is_sub_carry(&s1,&s1,&id_dest->val);
+  if(id_src->val == 0x80000000) rtl_li(&s1,0);
   rtl_set_CF(&s1);
   rtl_is_sub_overflow(&s0, &s1, &id_dest->val, &id_src->val, id_dest->width);
+  if(id_src->val == 0x80000000) rtl_li(&s0,0);
   rtl_set_OF(&s0);
   print_asm_template2(cmp);
   printf("sf: %d, zf: %d, of: %d, cf: %d\n",cpu.SF, cpu.ZF, cpu.OF, cpu.CF);
