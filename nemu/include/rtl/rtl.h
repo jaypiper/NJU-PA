@@ -130,7 +130,7 @@ void interpret_rtl_exit(int state, vaddr_t halt_pc, uint32_t halt_ret);
 
 /* RTL pseudo instructions */
 
-void rtl_not(rtlreg_t *dest, const rtlreg_t* src1) {
+static void rtl_not(rtlreg_t *dest, const rtlreg_t* src1) {
   // dest <- ~src1
   *dest = ~(*src1);
 }
@@ -145,6 +145,7 @@ static inline void rtl_sext(rtlreg_t* dest, const rtlreg_t* src1, int width) {
     default: assert(0);
   }
   //printf("width: %u, dest: %x\n",width,*dest);
+  rtl_not(dest,src1);
 }
 
 static inline void rtl_setrelopi(uint32_t relop, rtlreg_t *dest,
