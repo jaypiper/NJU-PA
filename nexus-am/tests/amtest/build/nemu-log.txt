@@ -29,4 +29,3 @@
   10001e:   51                                    pushl %ecx
   10001f:   8b 01                                 movl (%ecx),%eax
   100021:   8a 00                                 movb (%eax),%al
-  100023:   83 e8 64                              subl $0x64,%eax
