@@ -1,7 +1,7 @@
 #include "cpu/exec.h"
 
 make_EHelper(lidt) {
-  TODO();
+  cpu.IDTR._addr = id_dest->val;
 
   print_asm_template1(lidt);
 }

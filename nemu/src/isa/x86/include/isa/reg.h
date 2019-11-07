@@ -34,7 +34,17 @@ typedef struct {
     };
   };
   vaddr_t pc;
-  bool CF, ZF, SF, IF, OF; //我还没实现IF
+  union{
+    struct{
+      uint32_t CF:1, :5, ZF:1, SF:1, :3, OF:1, :20;
+    };
+    rtlreg_t eflags;
+  };
+  rtlreg_t CS;
+  struct{
+    uint32_t _addr;
+    uint32_t _sz;
+  }IDTR;
 
 } CPU_state;
 
