@@ -3,8 +3,8 @@
 void raise_intr(uint32_t,vaddr_t);
 
 make_EHelper(lidt) {
-  cpu.IDTR._addr = id_dest->val;
   cpu.IDTR._sz = vaddr_read(id_dest->val,2);
+  cpu.IDTR._addr = vaddr_read(id_dest->val + 2,4);
   print_asm_template1(lidt);
 }
 
