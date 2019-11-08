@@ -7,8 +7,8 @@ void raise_intr(uint32_t NO, vaddr_t ret_addr) {
   rtl_push(&cpu.eflags);
   rtl_push(&cpu.CS);
   rtl_push(&cpu.pc);
-  rtl_j((vaddr_read(cpu.IDTR.offset + 8*NO +4,4) & 0xFFFF0000) 
-      + (vaddr_read(cpu.IDTR.offset + 8*NO, 4) & 0x0000FFFF));
+  rtl_j((vaddr_read(cpu.IDTR._addr + 8*NO +4,4) & 0xFFFF0000) 
+      + (vaddr_read(cpu.IDTR._addr + 8*NO, 4) & 0x0000FFFF));
 
 }
 

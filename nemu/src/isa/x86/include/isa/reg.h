@@ -42,7 +42,7 @@ typedef struct {
   };
   rtlreg_t CS;
   struct{
-    uint32_t offset;
+    uint32_t _addr;
     uint32_t _sz;
   }IDTR;
 
