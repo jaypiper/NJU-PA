@@ -38,6 +38,19 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
                   }                 
                   c += d_num;
                   break;
+        case 'x': d = va_arg(ap,int);
+                  if(d == 0){
+                    *c = '0';
+                    c++;
+                  }
+                  for(int i = d; i != 0; i /= 16) d_num++;
+                  for(int i = d_num; i > 0; i--){
+                    if((d & 0xff) > 9) *(c + i - 1) = (d & 0xff) -10 +'a';
+                    else *(c + i - 1) = (d & 0xff) + '0';
+                    d /= 16;
+                  }
+                  c += d_num;
+                  break;
         default :  break;
       }
     }
