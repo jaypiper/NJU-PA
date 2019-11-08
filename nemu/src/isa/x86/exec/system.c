@@ -24,7 +24,7 @@ make_EHelper(mov_cr2r) {
 
 make_EHelper(int) {
   
-  raise_intr(id_dest->val,decinfo.seq_pc);  //注意第二个参数
+  raise_intr(id_dest->val,decinfo.seq_pc);  
   //注意使用intr.c中函数进行实现
 
   print_asm("int %s", id_dest->str);
