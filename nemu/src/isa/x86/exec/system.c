@@ -4,7 +4,7 @@ void raise_intr(uint32_t,vaddr_t);
 
 make_EHelper(lidt) {
   cpu.IDTR._addr = id_dest->val;
- //TODO();
+  cpu.IDTR._sz = vaddr_read(id_dest->val,2);
   print_asm_template1(lidt);
 }
 
