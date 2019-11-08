@@ -2,11 +2,14 @@
 #define __ARCH_H__
 
 struct _Context {
-  int irq;
-  uintptr_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
-  uintptr_t eip, cs, eflags;
-  //uintptr_t esi, ebx, eax, eip, edx, eflags, ecx, cs, esp, edi, ebp;
   struct _AddressSpace *as;
+  uintptr_t eflags;
+  uintptr_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
+  int irq;
+  uintptr_t eip;
+  uintptr_t cs;
+  //uintptr_t eip, cs, eflags;
+  //uintptr_t esi, ebx, eax, eip, edx, eflags, ecx, cs, esp, edi, ebp;
 };
 
 #define GPR1 eax
