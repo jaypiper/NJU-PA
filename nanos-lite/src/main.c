@@ -19,9 +19,9 @@ int main() {
 
   init_device();
 
-//#ifdef HAS_CTE
+#ifdef HAS_CTE
   init_irq();
-//#endif
+#endif
 
   init_fs();
 
@@ -29,9 +29,11 @@ int main() {
 
   Log("Finish initialization");
 
-//#ifdef HAS_CTE
+#ifdef HAS_CTE
+  printf("hello\n");
   _yield();
-//#endif
+
+#endif
 
   panic("Should not reach here");
 }
