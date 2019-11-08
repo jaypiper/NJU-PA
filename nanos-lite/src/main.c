@@ -19,9 +19,9 @@ int main() {
 
   init_device();
 
-#ifdef HAS_CTE
+//#ifdef HAS_CTE
   init_irq();
-#endif
+//#endif
 
   init_fs();
 
