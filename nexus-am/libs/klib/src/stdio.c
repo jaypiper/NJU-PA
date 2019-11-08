@@ -45,8 +45,8 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
                   }
                   for(int i = d; i != 0; i /= 16) d_num++;
                   for(int i = d_num; i > 0; i--){
-                    if((d & 0xff) > 9) *(c + i - 1) = (d & 0xff) -10 +'a';
-                    else *(c + i - 1) = (d & 0xff) + '0';
+                    if((d & 0xf) > 9) *(c + i - 1) = (d & 0xf) -10 +'a';
+                    else *(c + i - 1) = (d & 0xf) + '0';
                     d /= 16;
                   }
                   c += d_num;
