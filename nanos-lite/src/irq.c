@@ -9,6 +9,6 @@ static _Context* do_event(_Event e, _Context* c) {
 }
 
 void init_irq(void) {
-  printf("Initializing interrupt/exception handler...");
+  Log("Initializing interrupt/exception handler...");
   _cte_init(do_event);
 }
