@@ -1,8 +1,10 @@
 #include "cpu/exec.h"
 
+void raise_intr(uint32_t,vaddr_t);
+
 make_EHelper(lidt) {
   cpu.IDTR._addr = id_dest->val;
-
+ //TODO();
   print_asm_template1(lidt);
 }
 
@@ -21,7 +23,9 @@ make_EHelper(mov_cr2r) {
 }
 
 make_EHelper(int) {
-  TODO();
+  
+  raise_intr(id_dest->val,cpu.pc);  //注意第二个参数
+  //注意使用intr.c中函数进行实现
 
   print_asm("int %s", id_dest->str);
 

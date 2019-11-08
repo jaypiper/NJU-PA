@@ -268,7 +268,7 @@ static inline void set_cr0(uint32_t cr0) {
 
 static inline void set_idt(GateDesc *idt, int size) {
   volatile static uint16_t data[3];
-  data[0] = size - 1;
+  data[0] = size - 1;         //sz是什么？？
   data[1] = (uint32_t)idt;
   data[2] = (uint32_t)idt >> 16;
   asm volatile ("lidt (%0)" : : "r"(data));
