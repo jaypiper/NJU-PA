@@ -19,13 +19,19 @@ make_EHelper(pop) {
 }
 
 make_EHelper(pusha) {
-  TODO();
+  rtl_mv(&s0,&cpu.esp);
+  for(int i = 0; i < 4; i++) rtl_push(&cpu.gpr[i]._32);
+  rtl_push(&s0);
+  for(int i = 5; i < 8; i++) rtl_push(&cpu.gpr[i]._32);
 
   print_asm("pusha");
 }
 
 make_EHelper(popa) {
-  TODO();
+  for(int i = 7; i > 4; i--) rtl_pop(&cpu.gpr[i]._32);
+  rtl_pop(&s0);
+  for(int i = 3; i >= 0; i--) rtl_pop(&cpu.gpr[i]._32);
+  rtl_mv(&cpu.esp,&s0);
 
   print_asm("popa");
 }
