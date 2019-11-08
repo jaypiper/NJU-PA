@@ -31,7 +31,7 @@ make_EHelper(popa) {
   for(int i = 7; i > 4; i--) rtl_pop(&cpu.gpr[i]._32);
   rtl_pop(&s0);
   for(int i = 3; i >= 0; i--) rtl_pop(&cpu.gpr[i]._32);
-  rtl_mv(&cpu.esp,&s0);
+  //rtl_mv(&cpu.esp,&s0);
 
   print_asm("popa");
 }
