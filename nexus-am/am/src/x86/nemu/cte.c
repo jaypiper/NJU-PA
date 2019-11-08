@@ -11,11 +11,11 @@ void __am_vecnull();
 
 _Context* __am_irq_handle(_Context *c) {
   _Context *next = c;
-  printf("eax: %x, ebx: %x\n",c->eax,c->ebx);
+  printf("eax: %x, ebx: %x, addr: %x\n",c->eax,c->ebx, &c);
   if (user_handler) {
     _Event ev = {0};
     switch (c->irq) {
-      //default: ev.event = _EVENT_ERROR; break;
+      default: ev.event = _EVENT_ERROR; break;
     }
 
     next = user_handler(ev, c);
