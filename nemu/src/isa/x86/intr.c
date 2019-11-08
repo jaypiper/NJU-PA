@@ -11,6 +11,7 @@ void raise_intr(uint32_t NO, vaddr_t ret_addr) {
     };
   } gate;
   vaddr_t addr = cpu.IDTR._addr + 8*NO;
+  printf("addr: %x\n",addr);
   gate.lo = vaddr_read(addr,4);
   gate.hi = vaddr_read(addr+4,4);
   if(gate.gd.present){
