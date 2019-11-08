@@ -59,6 +59,7 @@ uint32_t isa_reg_str2val(const char *s, bool *success) {
     else if(!strcmp(s,regsl[i])) { find_reg = true ; num = cpu.gpr[i]._8[i/4]; break;}
   }
   if(!strcmp(s,"pc")) {find_reg = true; num = cpu.pc;}
+  if(!strcmp(s,"eflags")) {find_reg = true; num = cpu.eflags;};
   *success = true;
   if(!find_reg) *success = false;
 
