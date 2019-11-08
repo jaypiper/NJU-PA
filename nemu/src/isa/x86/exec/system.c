@@ -3,8 +3,8 @@
 void raise_intr(uint32_t,vaddr_t);
 
 make_EHelper(lidt) {
-  cpu.IDTR._sz = vaddr_read(id_dest->val,2);
-  cpu.IDTR._addr = vaddr_read(id_dest->val + 2,4);
+  cpu.IDTR._sz = vaddr_read(id_dest->addr,2);
+  cpu.IDTR._addr = vaddr_read(id_dest->addr + 2,4);
   if(decinfo.isa.is_operand_size_16)
     cpu.IDTR._addr &= 0x00FFFFFF;
   print_asm_template1(lidt);
