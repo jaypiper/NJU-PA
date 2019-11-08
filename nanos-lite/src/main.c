@@ -29,9 +29,9 @@ int main() {
 
   Log("Finish initialization");
 
-#ifdef HAS_CTE
+//#ifdef HAS_CTE
   _yield();
-#endif
+//#endif
 
   panic("Should not reach here");
 }
