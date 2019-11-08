@@ -3,7 +3,7 @@
 void raise_intr(uint32_t,vaddr_t);
 
 make_EHelper(lidt) {
-  cpu.IDTR._addr = id_dest->val;
+  cpu.IDTR.offset = id_dest->val;
  //TODO();
   print_asm_template1(lidt);
 }
