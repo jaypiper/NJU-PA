@@ -23,15 +23,15 @@ int main() {
   init_irq();
 #endif
 
-//   init_fs();
+  // init_fs();
 
-//   init_proc();
+  // init_proc();
 
-//   Log("Finish initialization");
+  // Log("Finish initialization");
 
-// #ifdef HAS_CTE
-//   _yield();
-// #endif
+#ifdef HAS_CTE
+  _yield();
+#endif
 
-//   panic("Should not reach here");
+  panic("Should not reach here");
 }
