@@ -2,7 +2,7 @@
 #define __ARCH_H__
 
 struct _Context {
-  struct _AddressSpace *as;
+  struct _AddressSpace *as;  //还没有完全确定as位置
   uintptr_t edi, esi, ebp, esp, ebx, edx, ecx, eax;
   int irq;
   uintptr_t eip;
