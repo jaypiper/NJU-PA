@@ -1,6 +1,7 @@
 #include "common.h"
 
 static _Context* do_event(_Event e, _Context* c) {
+  printf("reach!");
   switch (e.event) {
     case 0: Log("EVENT_NULL"); break;
     case 1: Log("EVENT_ERROR"); break;
