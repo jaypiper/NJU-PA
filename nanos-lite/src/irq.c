@@ -5,7 +5,7 @@ static _Context* do_event(_Event e, _Context* c) {
   //printf("after reach");
   switch (e.event) {
     case 0: printf("EVENT NULL"); break;
-    case 1: printf("EVENT ERROR"); break;
+    case 1: printf("EVENT ERROR\n"); break;
     case 2: printf("EVENT IRQ TIMER"); break;
     case 3: printf("EVENT IQR IODEV"); break;
     case 4: printf("EVENT PAGEFAULT"); break;
