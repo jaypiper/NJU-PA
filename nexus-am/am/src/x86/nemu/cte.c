@@ -13,7 +13,7 @@ _Context* __am_irq_handle(_Context *c) {
   _Context *next = c;
   //printf("hh %x\n", c == NULL);
  
- printf("eax: %x, ebx: %x, eip: %x, cs: %x, eflags: %x, as: %x, addr: %x\n",c->eax,c->ebx, c->eip, c->cs, c-> eflags, c->as, &next);
+ //printf("eax: %x, ebx: %x, eip: %x, cs: %x, eflags: %x, as: %x, addr: %x\n",c->eax,c->ebx, c->eip, c->cs, c-> eflags, c->as, &next);
   if (user_handler) {
     _Event ev = {0};
     switch (c->irq) {
