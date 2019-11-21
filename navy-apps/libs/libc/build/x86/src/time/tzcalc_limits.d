@@ -1,0 +1,30 @@
+/home/piper/ics2019/navy-apps/libs/libc/build/x86//src/time/tzcalc_limits.o: \
+ src/time/tzcalc_limits.c src/time/local.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/_ansi.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/newlib.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/config.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/machine/ieeefp.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/features.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/_newlib_version.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/time.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/_ansi.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/cdefs.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/machine/_default_types.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/reent.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_types.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/machine/_types.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/lock.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/machine/time.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/types.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_stdint.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/machine/endian.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/machine/_endian.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/select.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_sigset.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_timeval.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/timespec.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_timespec.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_pthreadtypes.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/sched.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/machine/types.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/xlocale.h
