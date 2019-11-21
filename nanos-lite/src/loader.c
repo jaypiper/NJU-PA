@@ -17,7 +17,7 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len);
 static uintptr_t loader(PCB *pcb, const char *filename) {
   //判断是否为elf：我没写QAQ
   Elf_Ehdr elf;
-  ramdisk_read(&elf, 0, sizeof(Elf_Ehdr));
+  ramdisk_read(&elf, 0, 52);
   for(int i = 0; i < sizeof(Elf_Ehdr)/4; i++) printf("%x \n",*((uint32_t*)&elf+i));
   printf("\n");
   //printf("\n total: %d", elf.e_phnum);
