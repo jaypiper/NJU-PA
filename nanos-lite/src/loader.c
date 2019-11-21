@@ -29,7 +29,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
       
       ramdisk_read(buf, ent.p_offset, ent.p_filesz);
       for(int j = ent.p_filesz; j <= ent.p_memsz; j++) buf[j] = 0;
-      memcpy((void*)ent.p_vaddr, buf , ent.p_memsz);
+      memcpy((char*)ent.p_vaddr, buf , ent.p_memsz);
      
     }
   }
