@@ -33,7 +33,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
      
     }
   }
-
+printf("%x\n",elf.e_entry);
   return elf.e_entry;
 }
 
