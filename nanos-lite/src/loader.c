@@ -20,6 +20,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   ramdisk_read(&elf, 0, sizeof(Elf_Ehdr));
 
   for(int i = 0; i < elf.e_phnum; i++){
+    printf("\n%d done\n", i);
     Elf_Phdr ent; 
     //uint32_t type;
     ramdisk_read(&ent, elf.e_phoff + i * elf.e_phentsize, elf.e_phentsize);
