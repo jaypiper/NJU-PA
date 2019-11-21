@@ -18,14 +18,14 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //判断是否为elf：我没写QAQ
   Elf_Ehdr elf;
   ramdisk_read(&elf, 0, sizeof(Elf_Ehdr));
-  printf("\n total: %d", elf.e_phnum);
+  //printf("\n total: %d", elf.e_phnum);
   for(int i = 0; i < elf.e_phnum; i++){
    // printf("\n%d done\n", i);
     Elf_Phdr ent; 
     //uint32_t type;
     ramdisk_read(&ent, elf.e_phoff + i * elf.e_phentsize, elf.e_phentsize);
     if(ent.p_type == PT_LOAD){
-      uint8_t * buf[ent.p_memsz]; //需要+1吗
+      uint8_t  buf[ent.p_memsz]; //需要+1吗
       
       ramdisk_read(buf, ent.p_offset, ent.p_filesz);
       for(int j = ent.p_filesz; j < ent.p_memsz; j++) buf[j] = 0;
@@ -33,7 +33,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
      
     }
   }
-printf("\n%x\n",elf.e_entry);
+
   return elf.e_entry;
 }
 
