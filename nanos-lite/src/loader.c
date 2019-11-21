@@ -17,15 +17,18 @@ size_t ramdisk_read(void *buf, size_t offset, size_t len);
 static uintptr_t loader(PCB *pcb, const char *filename) {
   //判断是否为elf：我没写QAQ
   Elf_Ehdr elf;
-  ramdisk_read(&elf, 0, 52);
-  for(int i = 0; i < sizeof(Elf_Ehdr)/4; i++) printf("%x \n",*((uint32_t*)&elf+i));
-  printf("\n");
-  //printf("\n total: %d", elf.e_phnum);
+  ramdisk_read(&elf, 0, sizeof(Elf_Ehdr));
+  // for(int i = 0; i < sizeof(Elf_Ehdr)/4; i++) printf("%x \n",*((uint32_t*)&elf+i));
+  // printf("\n");
   for(int i = 0; i < elf.e_phnum; i++){
    // printf("\n%d done\n", i);
     Elf_Phdr ent; 
     //uint32_t type;
     ramdisk_read(&ent, elf.e_phoff + i * elf.e_phentsize, elf.e_phentsize);
+
+    for(int i = 0; i < elf.e_phentsize/4; i++) printf("%x \n",*((uint32_t*)&ent+i));
+    printf("\n");
+    
     if(ent.p_type == PT_LOAD){
       uint8_t  buf[ent.p_memsz+1]; //需要+1吗
       
