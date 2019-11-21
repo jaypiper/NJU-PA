@@ -10,6 +10,7 @@
 # define Elf_Phdr Elf32_Phdr
 #endif
 
+#define PBEGIN 0x3000000;
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t ramdisk_read(void *buf, size_t offset, size_t len);
 
@@ -17,8 +18,6 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //判断是否为elf：我没写QAQ
   Elf_Ehdr elf;
   ramdisk_read(&elf, 0, sizeof(Elf_Ehdr));
-
-  //判断segment type来判断是否需要加载
 
   for(int i = 0; i < elf.e_phnum; i++){
     Elf_Phdr ent; 
@@ -34,7 +33,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     }
   }
 
-  return 0;
+  return PBEGIN;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
