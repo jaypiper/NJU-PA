@@ -25,10 +25,10 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     //uint32_t type;
     ramdisk_read(&ent, elf.e_phoff + i * elf.e_phentsize, elf.e_phentsize);
     if(ent.p_type == PT_LOAD){
-      uint8_t  buf[ent.p_memsz]; //需要+1吗
+      uint8_t  buf[ent.p_memsz+1]; //需要+1吗
       
       ramdisk_read(buf, ent.p_offset, ent.p_filesz);
-      for(int j = ent.p_filesz; j < ent.p_memsz; j++) buf[j] = 0;
+      for(int j = ent.p_filesz; j <= ent.p_memsz; j++) buf[j] = 0;
       memcpy((void*)ent.p_vaddr, buf , ent.p_memsz);
      
     }
