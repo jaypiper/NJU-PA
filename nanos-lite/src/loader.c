@@ -26,12 +26,11 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     ramdisk_read(&ent, elf.e_phoff + i * elf.e_phentsize, elf.e_phentsize);
     if(ent.p_type == PT_LOAD){
       uint8_t * buf[ent.p_memsz]; //需要+1吗
-      if(buf != NULL){
-        ramdisk_read(buf, ent.p_offset, ent.p_filesz);
-        for(int j = ent.p_filesz; j < ent.p_memsz; j++) buf[j] = 0;
-        ramdisk_write(buf, ent.p_offset, ent.p_memsz);
-      }
-      else assert(0);
+      
+      ramdisk_read(buf, ent.p_offset, ent.p_filesz);
+      for(int j = ent.p_filesz; j < ent.p_memsz; j++) buf[j] = 0;
+      ramdisk_write(buf, ent.p_offset, ent.p_memsz);
+     
     }
   }
 
