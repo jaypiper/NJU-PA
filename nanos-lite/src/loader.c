@@ -26,8 +26,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     //uint32_t type;
     ramdisk_read(&ent, elf.e_phoff + i * elf.e_phentsize, elf.e_phentsize);
 
-    // for(int i = 0; i < elf.e_phentsize/4; i++) printf("%x \n",*((uint32_t*)&ent+i));
-    // printf("\n");
+    for(int i = 0; i < elf.e_phentsize/4; i++) printf("%x \n",*((uint32_t*)&ent+i));
+    printf("\n");
     
     if(ent.p_type == PT_LOAD){
       char  buf[ent.p_memsz+1]; //需要+1吗
