@@ -27,9 +27,9 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     if(ent.p_type == PT_LOAD){
       uint8_t  buf[ent.p_memsz]; //需要+1吗
       
-      ramdisk_read(buf, ent.p_offset, ent.p_filesz);
+      ramdisk_read((void*)buf, ent.p_offset, ent.p_filesz);
       for(int j = ent.p_filesz; j < ent.p_memsz; j++) buf[j] = 0;
-      ramdisk_write(buf, ent.p_offset, ent.p_memsz);
+      ramdisk_write((void*)buf, ent.p_vaddr, ent.p_memsz);
      
     }
   }
@@ -39,9 +39,9 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
 void naive_uload(PCB *pcb, const char *filename) {
   uintptr_t entry = loader(pcb, filename);
-  printf("\nloader done\n");
+ 
   Log("Jump to entry = %x", entry);
-  printf("\nloader done\n");
+
   ((void(*)())entry) ();
 }
 
