@@ -22,12 +22,13 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //printf("idx:%d\n",idx);
   Elf_Ehdr elf;
   fs_read(idx, &elf, sizeof(Elf_Ehdr));
-  for(int i = 0; i < sizeof(Elf_Ehdr)/4; i++) printf("%x \n",*((uint32_t*)&elf+i));
-  printf("\n");
+  // for(int i = 0; i < sizeof(Elf_Ehdr)/4; i++) printf("%x \n",*((uint32_t*)&elf+i));
+  // printf("\n");
   for(int i = 0; i < elf.e_phnum; i++){
     Elf_Phdr ent; 
     fs_read(idx, &ent, elf.e_phentsize);
-
+    for(int i = 0; i < elf.e_phentsize/4; i++) printf("%x \n",*((uint32_t*)&ent+i));
+    printf("\n");
     if(ent.p_type == PT_LOAD){
       uint8_t  buf[ent.p_memsz+1]; //需要+1吗
       fs_read(idx, buf, ent.p_filesz);
