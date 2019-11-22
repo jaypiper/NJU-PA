@@ -49,6 +49,7 @@ int fs_open(const char* pathname, int flags, int mode){
   }
   assert(idx < NR_FILES);
   file_table[idx].open_offset = 0;
+  printf("idx: \n", idx);
   return idx;
 }
 /*尝试从fd(file descroptor)中读取len个字节，放入buf开始的位置，返回读取字节数
