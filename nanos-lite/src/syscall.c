@@ -11,6 +11,13 @@ _Context* do_syscall(_Context *c) {
   switch (a[0]) {
     case SYS_exit: _halt(a[2]); break;
     case SYS_yield: _yield(); break;
+    case SYS_write: 
+      if(a[3] == 0 || (a[1] != 1 && a[1] != 2)) {
+        c->GPRx = 0;  //x是返回值吗呜呜呜
+        break;
+      }
+      for(int i = 0; i  < a[3]; i++) _putc(*((char*)a[2]+i));
+      
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 
