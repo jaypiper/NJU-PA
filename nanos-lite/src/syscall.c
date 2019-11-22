@@ -17,7 +17,8 @@ _Context* do_syscall(_Context *c) {
         break;
       }
       c->GPRx = 1;
-      for(int i = 0; i  < a[3]; i++) _putc(*((char*)a[2]++));
+      for(int i = 0; i  < a[3]; i++) _putc('h');
+      //_putc(*((char*)a[2]++));
       break;
 
     default: panic("Unhandled syscall ID = %d", a[0]);
