@@ -4,9 +4,4 @@
  /home/piper/ics2019/navy-apps/libs/libc/include/sys/features.h \
  /home/piper/ics2019/navy-apps/libs/libc/include/_newlib_version.h \
  /home/piper/ics2019/navy-apps/libs/libc/include/sys/_intsup.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/sys/_stdint.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/assert.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/_ansi.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/newlib.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/sys/config.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/machine/ieeefp.h
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_stdint.h
