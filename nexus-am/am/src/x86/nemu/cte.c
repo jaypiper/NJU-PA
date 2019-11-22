@@ -16,7 +16,7 @@ _Context* __am_irq_handle(_Context *c) {
  printf("as: %x, addr: %x\n",c->as, &next);
  printf("edi: %x, %x, %x, %x,\n %x, %x, %x, %x\n", c->edi, c->esi, c->ebp, c->esp, c->ebx, c->edx, c-> ecx, c-> eax);
  printf("irq: %x, eip: %x\n", c->irq, c->eip);
- printf("cs: %x, eflags: %x", c-> cs, c->eflags);
+ printf("cs: %x, eflags: %x\n", c-> cs, c->eflags);
   if (user_handler) {
     _Event ev = {0};
     switch (c->irq) {
