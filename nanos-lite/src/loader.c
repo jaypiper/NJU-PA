@@ -29,8 +29,8 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     fs_lseek(idx, elf.e_phoff + i * elf.e_phentsize, 0);
     Elf_Phdr ent; 
     fs_read(idx, &ent, elf.e_phentsize);
-    for(int i = 0; i < elf.e_phentsize/4; i++) printf("%x \n",*((uint32_t*)&ent+i));
-    printf("\n");
+    // for(int i = 0; i < elf.e_phentsize/4; i++) printf("%x \n",*((uint32_t*)&ent+i));
+    // printf("\n");
     if(ent.p_type == PT_LOAD){
       uint8_t  buf[ent.p_memsz+1]; //需要+1吗
       fs_lseek(idx, ent.p_offset, 0);
@@ -43,30 +43,6 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   fs_close(idx);
   return elf.e_entry;
 }
-
-/*
-  ramdisk_read(&elf, 0, sizeof(Elf_Ehdr));
-  // for(int i = 0; i < sizeof(Elf_Ehdr)/4; i++) printf("%x \n",*((uint32_t*)&elf+i));
-  // printf("\n");
-  for(int i = 0; i < elf.e_phnum; i++){
-   // printf("\n%d done\n", i);
-    Elf_Phdr ent; 
-    //uint32_t type;
-    ramdisk_read(&ent, elf.e_phoff + i * elf.e_phentsize, elf.e_phentsize);
-
-    // for(int i = 0; i < elf.e_phentsize/4; i++) printf("%x \n",*((uint32_t*)&ent+i));
-    // printf("\n");
-    
-    if(ent.p_type == PT_LOAD){
-      uint8_t  buf[ent.p_memsz+1]; //需要+1吗
-      
-      ramdisk_read(buf, ent.p_offset, ent.p_filesz);
-      for(int j = ent.p_filesz; j <= ent.p_memsz; j++) buf[j] = 0;
-      memcpy((void*)ent.p_vaddr, buf , ent.p_memsz);
-     
-    }
-  }
-  */
 
 void naive_uload(PCB *pcb, const char *filename) {
   uintptr_t entry = loader(pcb, filename);
