@@ -20,7 +20,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   //判断是否为elf：我没写QAQ
   int idx = fs_open(filename, 0, 0);
 
-  Log("idx:%d\n",idx);
+  printf("idx:%d\n",idx);
   Elf_Ehdr elf;
   fs_read(idx, &elf, sizeof(Elf_Ehdr));
   for(int i = 0; i < elf.e_phnum; i++){
