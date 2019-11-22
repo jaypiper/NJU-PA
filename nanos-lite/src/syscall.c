@@ -18,7 +18,7 @@ _Context* do_syscall(_Context *c) {
       }
       c->GPRx = 1;
       char* out_ = (char*)a[2];
-      for(int i = 0; i  < 2; i++) {
+      for(int i = 0; i  < a[3]; i++) {
         _putc(*out_);
         out_++;
       }
