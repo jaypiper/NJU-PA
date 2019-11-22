@@ -54,7 +54,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
         default :  break;
       }
     }
-    else if(*fmt == '\\'){
+    else if(*fmt == 92){
       fmt ++;
       switch(*fmt++){
         case 'n': *c = 10; break;
