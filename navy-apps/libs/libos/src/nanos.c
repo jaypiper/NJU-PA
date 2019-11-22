@@ -64,8 +64,15 @@ int _write(int fd, void *buf, size_t count) {
   return 0;
 }
 
+extern char _end;
+
 void *_sbrk(intptr_t increment) {
-  return (void *)-1;
+  static void* p_break = &_end;   //原来end只是存在最后的符号而不是指示最后的指针
+  void* old_break = p_break;    //本来想卸载syscal里面，但返回值不好传
+  p_break += increment;
+  _syscall_(SYS_brk, increment, 0, 0);
+  return old_break;   //后面还需不需要改呢？
+  //return (void *)-1;
 }
 
 int _read(int fd, void *buf, size_t count) {
