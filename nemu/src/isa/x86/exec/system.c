@@ -25,7 +25,7 @@ make_EHelper(mov_cr2r) {
 }
 
 make_EHelper(int) {
-  
+  printf("%x\n",id_dest->val);
   raise_intr(id_dest->val,decinfo.seq_pc);  
   //注意使用intr.c中函数进行实现
 
