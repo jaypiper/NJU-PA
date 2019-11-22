@@ -1,6 +1,6 @@
 #include "proc.h"
 #include <elf.h>
-//#include <stdlib.h>
+//#include <stdio.h>
 
 #ifdef __ISA_AM_NATIVE__
 # define Elf_Ehdr Elf64_Ehdr
@@ -38,7 +38,6 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   fs_close(idx);
   return elf.e_entry;
 }
-
 void naive_uload(PCB *pcb, const char *filename) {
   uintptr_t entry = loader(pcb, filename);
  
