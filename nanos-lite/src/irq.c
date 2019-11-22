@@ -1,4 +1,5 @@
 #include "common.h"
+_Context* do_syscall(_Context *c);
 
 static _Context* do_event(_Event e, _Context* c) {
  // Log("reach");
@@ -10,7 +11,7 @@ static _Context* do_event(_Event e, _Context* c) {
     // case 3: printf("EVENT IQR IODEV\n"); break;
     // case 4: printf("EVENT PAGEFAULT\n"); break;
     case _EVENT_YIELD: printf("EVENT YIELD\n"); break;
-    case 6: printf("EVENT SYSCALL\n"); break;
+    case _EVENT_SYSCALL: do_syscall(c);break;
     default: panic("Unhandled event ID = %d", e.event);
   }
   //printf("the end");
