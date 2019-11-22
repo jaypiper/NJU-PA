@@ -36,7 +36,4 @@
  /home/piper/ics2019/navy-apps/libs/libc/include/machine/setjmp.h \
  /home/piper/ics2019/navy-apps/libs/libc/include/sys/time.h \
  /home/piper/ics2019/navy-apps/libs/libc/include/machine/_time.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/assert.h src/syscall.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/stdio.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/sys/stdio.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/ssp/stdio.h
+ /home/piper/ics2019/navy-apps/libs/libc/include/assert.h src/syscall.h
