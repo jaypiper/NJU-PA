@@ -68,7 +68,7 @@ void *_sbrk(intptr_t increment) {
   char* old_break = p_break;    //本来想卸载syscal里面，但返回值不好传
   p_break += increment;
   _syscall_(SYS_brk, (intptr_t)p_break, 0, 0);
-  return (void)old_break;   //后面还需不需要改呢？
+  return (void*)old_break;   //后面还需不需要改呢？
   //return (void *)-1;
 }
 
