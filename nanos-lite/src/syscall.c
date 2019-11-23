@@ -17,12 +17,18 @@ _Context* do_syscall(_Context *c) {
   switch (a[0]) {
     case SYS_exit: _halt(a[2]); break;
     case SYS_yield: _yield(); break;
-    case SYS_write: if(a[3] == 0 || (a[1] != 1 && a[1] != 2)) {
+    case SYS_write:
+    if(a[3] == 0 || (a[1] != 1 && a[1] != 2)) {
                     c->GPRx = 0;  //x是返回值吗呜呜呜
                     break;
-                    }
-                    c -> GPRx =fs_write(a[1],(void*)a[2], a[3]);
-                    break;
+                  }
+                  c->GPRx = 1;
+                  char* out_ = (char*)a[2];
+                  for(int i = 0; i  < a[3]; i++) {
+                    _putc(*out_);
+                    out_++;
+                  }
+                  break;
     case SYS_brk: c  -> GPRx = 0; break;
     case SYS_read: c -> GPRx = fs_read(a[1],(void*)a[2], a[3]); break;
     case SYS_close: fs_close(a[1]); break;
