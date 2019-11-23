@@ -28,8 +28,8 @@ int main() {
   printf("PASS3\n");
 
   for (i = 500; i < 1000; i ++) {
-    fscanf(fp, "%d", &n);
     printf("i: %d, n: %d", i, n);
+    fscanf(fp, "%d", &n);
     assert(n == i + 1);
   }
   printf("PASS4\n");
