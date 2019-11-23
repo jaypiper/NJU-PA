@@ -5,8 +5,8 @@ int main() {
   printf("PASS-1\n");
   
   FILE *fp = fopen("/share/texts/num", "r+");
-  assert(fp);
   printf("PASS0\n");
+  assert(fp);
 
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
