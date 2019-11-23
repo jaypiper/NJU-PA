@@ -78,7 +78,7 @@ size_t fs_read(int fd, void *buf, size_t len){
     readf(buf, file_table[fd].disk_offset + file_table[fd].open_offset, read_size);
     file_table[fd].open_offset += read_size;// 到底是加之前的还是之后的呢？QAQ好像是一样的
   }
-  else if(!strcmp(file_table[fd].name, "/proc/dispinfo")){
+  else if(!strcmp(file_table[fd].name, "/proc/dispinfo")||!strcmp(file_table[fd].name, "/bin/event")){
     if(file_table[fd].open_offset >= file_table[fd].size) return 0;
     if(file_table[fd].open_offset + len > file_table[fd].size)
       read_size = file_table[fd].size - file_table[fd].open_offset;
