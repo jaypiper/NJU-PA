@@ -67,7 +67,7 @@ void *_sbrk(intptr_t increment) {
   static void* p_break = &_end;   //原来end只是存在最后的符号而不是指示最后的指针
   void* old_break = p_break;    //本来想卸载syscal里面，但返回值不好传
   p_break += increment;
-  _syscall_(SYS_brk, (void*)p_break, 0, 0);
+  _syscall_(SYS_brk, (intptr_t*)p_break, 0, 0);
   return (void*)old_break;   //后面还需不需要改呢？
   //return (void *)-1;
 }
