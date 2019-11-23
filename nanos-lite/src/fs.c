@@ -26,6 +26,7 @@ size_t invalid_write(const void *buf, size_t offset, size_t len) {
 size_t serial_write(const void *buf, size_t offset, size_t len);
 size_t dispinfo_read(void *buf, size_t offset, size_t len);
 size_t fb_write(const void *buf, size_t offset, size_t len);
+size_t events_read(void *buf, size_t offset, size_t len);
 
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {
@@ -34,6 +35,7 @@ static Finfo file_table[] __attribute__((used)) = {
   {"stderr", 0, 0, invalid_read, serial_write},
   {"/dev/fb", 0, 0, invalid_read, fb_write},
   {"/proc/dispinfo", 128, 0,dispinfo_read, invalid_write},
+  {"/dev/events", 256, 0, events_read, invalid_write},
 #include "files.h"      //这种包括方法也太强了！
 };
 
@@ -57,9 +59,9 @@ int fs_open(const char* pathname, int flags, int mode){
   for(idx = 0; idx < NR_FILES; idx++){
     if(strcmp(file_table[idx].name, pathname) == 0) break;
   }
+  printf("idx: %d, %s\n", idx,pathname);
   assert(idx < NR_FILES);
   file_table[idx].open_offset = 0;
-  //printf("idx: %d, %s, %s\n", idx,pathname, file_table[idx].name);
   return idx;
 }
 /*尝试从fd(file descroptor)中读取len个字节，放入buf开始的位置，返回读取字节数
