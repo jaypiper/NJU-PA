@@ -75,7 +75,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
     write_size = file_table[fd].size - file_table[fd].open_offset;
   //printf("fd: %d\n", fd);
  // if(fd == 1 || fd == 2) {
-    printf("%s",buf);                       //这样实现真的okkk？
+    //printf("%s",buf);                       //这样实现真的okkk？
     // char* out_ = (char*)buf;
     // for(int i = 0; i  < write_size; i++) {
     //   _putc(*out_);
