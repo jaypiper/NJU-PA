@@ -58,13 +58,14 @@ int fs_open(const char* pathname, int flags, int mode){
 */
 size_t fs_read(int fd, void *buf, size_t len){
   printf("read fd: %d\n",fd);
-  if(fd < 3) return 0;
-  size_t read_size = len;
-  if(file_table[fd].open_offset + len > file_table[fd].size)
-    read_size = file_table[fd].size - file_table[fd].open_offset;
-  ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, read_size);
-  file_table[fd].open_offset += read_size;// 到底是加之前的还是之后的呢？QAQ好像是一样的
-  return read_size;
+  // if(fd < 3) return 0;
+  // size_t read_size = len;
+  // if(file_table[fd].open_offset + len > file_table[fd].size)
+  //   read_size = file_table[fd].size - file_table[fd].open_offset;
+  // ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, read_size);
+  // file_table[fd].open_offset += read_size;// 到底是加之前的还是之后的呢？QAQ好像是一样的
+  // return read_size;
+  return 0;
 }
 
 /* 从offset开始写入吗
