@@ -2,7 +2,9 @@
 #include <amdev.h>
 
 size_t serial_write(const void *buf, size_t offset, size_t len) {
-  return 0;
+  const char* out = buf;
+  for(int i = 0; i < len; i++, out++) _putc(*out);
+  return len;
 }
 
 #define NAME(key) \

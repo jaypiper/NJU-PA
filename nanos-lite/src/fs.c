@@ -23,12 +23,13 @@ size_t invalid_write(const void *buf, size_t offset, size_t len) {
   panic("should not reach here");
   return 0;
 }
+size_t serial_write(const void *buf, size_t offset, size_t len);
 
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {
   {"stdin", 0, 0, invalid_read, invalid_write},
-  {"stdout", 0, 0, invalid_read, invalid_write},
-  {"stderr", 0, 0, invalid_read, invalid_write},
+  {"stdout", 0, 0, invalid_read, serial_write},
+  {"stderr", 0, 0, invalid_read, serial_write},
 #include "files.h"      //这种包括方法也太强了！
 };
 
@@ -54,36 +55,37 @@ int fs_open(const char* pathname, int flags, int mode){
 }
 /*尝试从fd(file descroptor)中读取len个字节，放入buf开始的位置，返回读取字节数
   增加file offset（open offset),（读取字节数, 不一定所有能读到len字节)
-  =W=我不想检测len是否为0
-*/
+  =W=我不想检测len是否为0*/
 size_t fs_read(int fd, void *buf, size_t len){
   //printf("read fd: %d\n",fd);
-  if(fd == 0){
-
-  }
-  if(fd < 3) return 0;
+  ReadFn readf = file_table[fd].read;
   size_t read_size = len;
-  if(file_table[fd].open_offset + len > file_table[fd].size)
-    read_size = file_table[fd].size - file_table[fd].open_offset;
-  ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, read_size);
-  file_table[fd].open_offset += read_size;// 到底是加之前的还是之后的呢？QAQ好像是一样的
+  if(readf == NULL) {
+    readf = ramdisk_read;
+    if(file_table[fd].size - file_table[fd].open_offset < len)
+      read_size = file_table[fd].size - file_table[fd].open_offset;
+    readf(buf, file_table[fd].disk_offset + file_table[fd].open_offset, read_size);
+    file_table[fd].open_offset += read_size;// 到底是加之前的还是之后的呢？QAQ好像是一样的
+  }
+  else readf(buf, 0, 0);
+  //ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, read_size);
   return read_size;
 }
-
-/* 从offset开始写入吗
-*/
+/* 从offset开始写入吗*/
 size_t fs_write(int fd, const void *buf, size_t len){
- // printf("write fd: %d, len: %d\n", fd, len);
   size_t write_size = len;
-  if(file_table[fd].open_offset + len > file_table[fd].size)
-    write_size = file_table[fd].size - file_table[fd].open_offset;
- if(fd == 1 || fd == 2) {
-    printf("%s",buf);                       //这样实现真的okkk？
+  WriteFn writef =  file_table[fd].write;
+  if(file_table[fd].write == NULL){
+    writef = ramdisk_write;
+    if(file_table[fd].size - file_table[fd].open_offset < len)
+      write_size = file_table[fd].size - file_table[fd].open_offset;
+    writef(buf, file_table[fd].disk_offset + file_table[fd].open_offset, write_size);
+    file_table[fd].open_offset += write_size;
+    return write_size;
   }
-  else 
-    ramdisk_write(buf, file_table[fd].disk_offset + file_table[fd].open_offset, write_size);
-  file_table[fd].open_offset += write_size;   //QAQ忘记加offset了
-  return write_size;
+  else return writef(buf, 0, write_size);
+  // file_table[fd].open_offset += write_size;   //QAQ忘记加offset了
+  // return write_size;
 }
 /* 允许open_offset超过文件大小,但讲义上面说不要，因此如果超过那么操作
    无效，并返回-1*/
