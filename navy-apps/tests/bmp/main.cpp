@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 int main() {
+  printf("reach-0");
   NDL_Bitmap *bmp = (NDL_Bitmap*)malloc(sizeof(NDL_Bitmap));
   printf("reach-1");
   NDL_LoadBitmap(bmp, "/share/pictures/projectn.bmp");
