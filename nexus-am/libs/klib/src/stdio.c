@@ -17,6 +17,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
   char *s;
   char *c = out;
   int d,d_num = 0;
+  uint32_t ud = 0;
    while(*fmt){
     if(*fmt == '%'){
       fmt++;
@@ -51,6 +52,19 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
                   }
                   c += d_num;
                   break;
+        case 'u': ud = va_arg(ap,uint32_t);
+                  if(ud == 0){
+                    *c = '0';
+                    c++;
+                  }
+                  for(uint32_t i = ud; i!=0; i/=10) d_num++;
+                  for(int i = d_num; i > 0; i--){
+                    *(c + i - 1) = ud % 10 + '0';
+                    ud /= 10;
+                  }                 
+                  c += d_num;
+                  break;
+
         default :  break;
       }
     }
