@@ -57,6 +57,7 @@ int fs_open(const char* pathname, int flags, int mode){
   =W=我不想检测len是否为0
 */
 size_t fs_read(int fd, void *buf, size_t len){
+  if(fd < 3) return 0;
   size_t read_size = len;
   if(file_table[fd].open_offset + len > file_table[fd].size)
     read_size = file_table[fd].size - file_table[fd].open_offset;
