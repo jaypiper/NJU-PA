@@ -11,6 +11,7 @@ int main() {
   assert(bmp->pixels);
   printf("pass3\n");
   printf("%d, %d\n", bmp->w, bmp->h);
+  
   NDL_OpenDisplay(bmp->w, bmp->h);
   printf("pass4\n");
   NDL_DrawRect(bmp->pixels, 0, 0, bmp->w, bmp->h);

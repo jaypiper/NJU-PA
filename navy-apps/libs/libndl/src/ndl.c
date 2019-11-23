@@ -31,14 +31,14 @@ int NDL_OpenDisplay(int w, int h) {
     printf("\033[X%d;%ds", w, h); fflush(stdout);
     evtdev = stdin;
   } else {
-    // get_display_info();
-    // assert(screen_w >= canvas_w);
-    // assert(screen_h >= canvas_h);
-    // pad_x = (screen_w - canvas_w) / 2;
-    // pad_y = (screen_h - canvas_h) / 2;
-    // fbdev = fopen("/dev/fb", "w"); assert(fbdev);
-    // evtdev = fopen("/dev/events", "r"); assert(evtdev);
-    // fbsyncdev = fopen("/dev/fbsync", "w"); assert(fbsyncdev);
+    get_display_info();
+    assert(screen_w >= canvas_w);
+    assert(screen_h >= canvas_h);
+    pad_x = (screen_w - canvas_w) / 2;
+    pad_y = (screen_h - canvas_h) / 2;
+    fbdev = fopen("/dev/fb", "w"); assert(fbdev);
+    evtdev = fopen("/dev/events", "r"); assert(evtdev);
+    fbsyncdev = fopen("/dev/fbsync", "w"); assert(fbsyncdev);
   }
 }
 
@@ -133,12 +133,16 @@ static void get_display_info() {
   assert(dispinfo);
   screen_w = screen_h = 0;
   char buf[128], key[128], value[128], *delim;
-  while (fgets(buf, 128, dispinfo)) {
+  while (fgets(buf, 128, dispinfo)&&screen_h == 0) {
+    printf("info1\n");
     *(delim = strchr(buf, ':')) = '\0';
     sscanf(buf, "%s", key);
     sscanf(delim + 1, "%s", value);
+    printf("info2\n");
     if (strcmp(key, "WIDTH") == 0) sscanf(value, "%d", &screen_w);
+    printf("info3\n");
     if (strcmp(key, "HEIGHT") == 0) sscanf(value, "%d", &screen_h);
+    printf("w: %d, h: %d\n", screen_w, screen_h);
   }
   fclose(dispinfo);
   assert(screen_w > 0 && screen_h > 0);
