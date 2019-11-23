@@ -19,7 +19,7 @@ int NDL_OpenDisplay(int w, int h) {
   canvas_w = w;
   canvas_h = h;
   canvas = malloc(sizeof(uint32_t) * w * h);
- // assert(canvas);
+  assert(canvas);
 
   if (getenv("NWM_APP")) {
     has_nwm = 1;
@@ -32,13 +32,13 @@ int NDL_OpenDisplay(int w, int h) {
     evtdev = stdin;
   } else {
     get_display_info();
-    // assert(screen_w >= canvas_w);
-    // assert(screen_h >= canvas_h);
+    assert(screen_w >= canvas_w);
+    assert(screen_h >= canvas_h);
     pad_x = (screen_w - canvas_w) / 2;
     pad_y = (screen_h - canvas_h) / 2;
-    // fbdev = fopen("/dev/fb", "w"); assert(fbdev);
-    // evtdev = fopen("/dev/events", "r"); assert(evtdev);
-    // fbsyncdev = fopen("/dev/fbsync", "w"); assert(fbsyncdev);
+    fbdev = fopen("/dev/fb", "w"); assert(fbdev);
+    evtdev = fopen("/dev/events", "r"); assert(evtdev);
+    fbsyncdev = fopen("/dev/fbsync", "w"); assert(fbsyncdev);
   }
 }
 
