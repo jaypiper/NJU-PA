@@ -27,6 +27,7 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
+  printf("len: %d, offset: %d", len, offset);
   const char* disp = buf;
   len /= 4;
   for(int i = 0; i < len/4; i++){
