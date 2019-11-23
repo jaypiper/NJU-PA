@@ -22,7 +22,6 @@ size_t events_read(void *buf, size_t offset, size_t len) {
 static char dispinfo[128] __attribute__((used)) = {};
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
-
   if(len + offset > sizeof(dispinfo)) len = sizeof(dispinfo) - offset;
   memcpy(buf, dispinfo+offset, len);
   return len;
@@ -30,15 +29,15 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
   printf("len: %d, offset: %d", len, offset);
-  len /= 4;
+  len /= 4; offset /= 4;
   int x = offset % screen_width();
   int y = offset / screen_width();
   
   for(int beg = 0; beg < len; ){
     if(len - beg > screen_width() - x){
       draw_rect((uint32_t*) buf, x, y, screen_width()-x, 1);
-      x = 0; y++;
       beg += screen_width() - x;
+      x = 0; y++;
     }
     else{
       draw_rect((uint32_t*)buf, x, y, len - beg, 1);

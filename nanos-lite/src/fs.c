@@ -75,7 +75,7 @@ size_t fs_read(int fd, void *buf, size_t len){
     readf(buf, file_table[fd].disk_offset + file_table[fd].open_offset, read_size);
     file_table[fd].open_offset += read_size;// 到底是加之前的还是之后的呢？QAQ好像是一样的
   }
-  else readf(buf, 0, 0);
+  else readf(buf, 0, len);
   //ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, read_size);
   return read_size;
 }
