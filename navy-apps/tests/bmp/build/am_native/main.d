@@ -19,4 +19,17 @@
  /home/piper/ics2019/navy-apps/libs/libndl/include/ndl.h \
  /home/piper/ics2019/navy-apps/libs/libc/include/stdint.h \
  /home/piper/ics2019/navy-apps/libs/libc/include/sys/_intsup.h \
- /home/piper/ics2019/navy-apps/libs/libc/include/sys/_stdint.h
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_stdint.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/stdio.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/types.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/machine/endian.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/machine/_endian.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/select.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_sigset.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_timeval.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/timespec.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_timespec.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/_pthreadtypes.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/sched.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/machine/types.h \
+ /home/piper/ics2019/navy-apps/libs/libc/include/sys/stdio.h
