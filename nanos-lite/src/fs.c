@@ -58,6 +58,9 @@ int fs_open(const char* pathname, int flags, int mode){
 */
 size_t fs_read(int fd, void *buf, size_t len){
   //printf("read fd: %d\n",fd);
+  if(fd == 0){
+
+  }
   if(fd < 3) return 0;
   size_t read_size = len;
   if(file_table[fd].open_offset + len > file_table[fd].size)
@@ -70,7 +73,7 @@ size_t fs_read(int fd, void *buf, size_t len){
 /* 从offset开始写入吗
 */
 size_t fs_write(int fd, const void *buf, size_t len){
-  //printf("write fd: %d\n", fd);
+  printf("write fd: %d, len: %d\n", fd, len);
   size_t write_size = len;
   if(file_table[fd].open_offset + len > file_table[fd].size)
     write_size = file_table[fd].size - file_table[fd].open_offset;
