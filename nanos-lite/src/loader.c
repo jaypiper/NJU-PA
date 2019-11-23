@@ -41,13 +41,12 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     }
   }
   fs_close(idx);
-    printf("reach-19");
   return elf.e_entry;
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
   uintptr_t entry = loader(pcb, filename);
- 
+  printf("reach\n");
   Log("Jump to entry = %x", entry);
 
   ((void(*)())entry) ();
