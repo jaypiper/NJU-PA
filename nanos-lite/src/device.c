@@ -25,6 +25,7 @@ size_t events_read(void *buf, size_t offset, size_t len) {
     sprintf(buf, "t %u\n", time);
   }
   else sprintf(buf,"%s %s\n", (key_down? "kd":"ku"), keyname[key]);
+  printf("buf:%s\n",buf);
   return strlen(buf);
 }
 
