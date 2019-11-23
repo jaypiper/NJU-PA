@@ -65,7 +65,7 @@ int fs_open(const char* pathname, int flags, int mode){
   增加file offset（open offset),（读取字节数, 不一定所有能读到len字节)
   =W=我不想检测len是否为0*/
 size_t fs_read(int fd, void *buf, size_t len){
-  printf("read fd: %d\n",fd);
+  Log("read fd: %d\n",fd);
   ReadFn readf = file_table[fd].read;
   size_t read_size = len;
   if(readf == NULL) {
