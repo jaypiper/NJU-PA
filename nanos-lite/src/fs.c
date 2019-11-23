@@ -73,7 +73,7 @@ size_t fs_read(int fd, void *buf, size_t len){
 /* 从offset开始写入吗
 */
 size_t fs_write(int fd, const void *buf, size_t len){
-  printf("write fd: %d, len: %d\n", fd, len);
+ // printf("write fd: %d, len: %d\n", fd, len);
   size_t write_size = len;
   if(file_table[fd].open_offset + len > file_table[fd].size)
     write_size = file_table[fd].size - file_table[fd].open_offset;
@@ -82,7 +82,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
   }
   else 
     ramdisk_write(buf, file_table[fd].disk_offset + file_table[fd].open_offset, write_size);
-  file_table[fd].open_offset += write_size;
+  file_table[fd].open_offset += write_size;   //QAQ忘记加offset了
   return write_size;
 }
 /* 允许open_offset超过文件大小,但讲义上面说不要，因此如果超过那么操作
