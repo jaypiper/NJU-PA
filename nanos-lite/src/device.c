@@ -26,7 +26,6 @@ size_t events_read(void *buf, size_t offset, size_t len) {
   }
   else sprintf(buf,"%s %s\n", key_down? "kd":"ku", keyname[key]);
   return strlen(buf);
-  return 0;
 }
 
 static char dispinfo[128] __attribute__((used)) = {};
