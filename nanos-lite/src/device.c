@@ -29,7 +29,7 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 size_t fb_write(const void *buf, size_t offset, size_t len) {
   const char* disp = buf;
   len /= 4;
-  for(int i = 0; i < len; i++){
+  for(int i = 0; i < len/4; i++){
     int x = offset % screen_width();
     int y = offset / screen_width();
     draw_rect((uint32_t*)disp, x, y, 1, 1);
