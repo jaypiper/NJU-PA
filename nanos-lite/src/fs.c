@@ -65,7 +65,7 @@ int fs_open(const char* pathname, int flags, int mode){
   增加file offset（open offset),（读取字节数, 不一定所有能读到len字节)
   =W=我不想检测len是否为0*/
 size_t fs_read(int fd, void *buf, size_t len){
-  //printf("read fd: %d\n",fd);
+  printf("read fd: %d\n",fd);
   ReadFn readf = file_table[fd].read;
   size_t read_size = len;
   if(readf == NULL) {
@@ -75,7 +75,7 @@ size_t fs_read(int fd, void *buf, size_t len){
     readf(buf, file_table[fd].disk_offset + file_table[fd].open_offset, read_size);
     file_table[fd].open_offset += read_size;// 到底是加之前的还是之后的呢？QAQ好像是一样的
   }
-  else readf(buf, 0, 0);
+  else readf(buf, 0, read_size);
   //ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].open_offset, read_size);
   return read_size;
 }
