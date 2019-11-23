@@ -71,6 +71,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
   size_t write_size = len;
   if(file_table[fd].open_offset + len > file_table[fd].size)
     write_size = file_table[fd].size - file_table[fd].open_offset;
+  printf("fd: %d", fd);
   if(fd == 1 || fd == 2) {
     char* out_ = (char*)buf;
     for(int i = 0; i  < write_size; i++) {
