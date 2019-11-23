@@ -18,6 +18,6 @@ int main() {
   NDL_Render();
   printf("pass6\n");
   NDL_CloseDisplay();
-  //while (1);
+  while (1);
   return 0;
 }
