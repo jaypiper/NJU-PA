@@ -14,7 +14,7 @@ int main() {
         break;
       }
     }
-    printf("eventbuf: %s",buf);
+    printf("eventbuf: %s\n",buf);
     int is_time = buf[0] == 't';
     time += is_time;
     if (!is_time) {
