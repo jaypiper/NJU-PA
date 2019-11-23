@@ -20,7 +20,7 @@ size_t fs_lseek(int fd, size_t offset, int whence);
 static uintptr_t loader(PCB *pcb, const char *filename) {
   //判断是否为elf：我没写QAQ
   int idx = fs_open(filename, 0, 0);
-  printf("idx:%d\n",idx);
+  //printf("idx:%d\n",idx);
   Elf_Ehdr elf;
   fs_read(idx, &elf, sizeof(Elf_Ehdr));
   // for(int i = 0; i < sizeof(Elf_Ehdr)/4; i++) printf("%x \n",*((uint32_t*)&elf+i));
@@ -41,6 +41,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     }
   }
   fs_close(idx);
+    printf("reach-19");
   return elf.e_entry;
 }
 
