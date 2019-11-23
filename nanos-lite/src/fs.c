@@ -79,13 +79,13 @@ size_t fs_read(int fd, void *buf, size_t len){
     file_table[fd].open_offset += read_size;// 到底是加之前的还是之后的呢？QAQ好像是一样的
   }
   else if(!strcmp(file_table[fd].name, "/proc/dispinfo")||!strcmp(file_table[fd].name, "/dev/events")){
+     printf("out\n");
     if(file_table[fd].open_offset >= file_table[fd].size) return 0;
     if(file_table[fd].open_offset + len > file_table[fd].size)
       read_size = file_table[fd].size - file_table[fd].open_offset;
     readf(buf, file_table[fd].open_offset, read_size);
     file_table[fd].open_offset += read_size;
     // printf("%d\n",file_table[fd].open_offset);
-     printf("out:%s\n",buf);
     // printf("read_size: %d",read_size);
   }
   else readf(buf, 0, read_size);
