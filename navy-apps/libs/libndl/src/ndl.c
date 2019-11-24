@@ -26,12 +26,15 @@ int NDL_OpenDisplay(int w, int h) {
   } else {
     has_nwm = 0;
   }
-
+  //printf("nvm: %d\n", has_nwm);
+  has_nwm = 1;
   if (has_nwm) {
     printf("\033[X%d;%ds", w, h); fflush(stdout);
     evtdev = stdin;
   } else {
+    printf("passbeg\n");
     get_display_info();
+    printf("passend\n");
     assert(screen_w >= canvas_w);
     assert(screen_h >= canvas_h);
     pad_x = (screen_w - canvas_w) / 2;

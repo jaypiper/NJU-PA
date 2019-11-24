@@ -70,10 +70,11 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
     }
     else if(*fmt == 92){
       fmt ++;
-      switch(*fmt++){
+      switch(*fmt){
         case 'n': *c = 10; break;
         default: break;
       }
+      c++;
     }
     else{
       *c = *fmt;

@@ -32,15 +32,16 @@ int NDL_LoadBitmap(NDL_Bitmap *bmp, const char *filename) {
 
   if (hdr.bitcount != 24) return -1;
   if (hdr.compression != 0) return -1;
-  printf("\n%d\n", (int32_t)sizeof(struct BitmapHeader));
+  //printf("\n%d\n", (int32_t)sizeof(struct BitmapHeader));
   pixels = (uint32_t*)malloc(hdr.width * hdr.height * sizeof(uint32_t));
   if (!pixels) return -1;
-
+  //printf("not here\n");
   w = hdr.width; h = hdr.height;
   int line_off = (w * 3 + 3) & ~0x3;
 
   for (int i = 0; i < h; i ++) {
     fseek(fp, hdr.offset + (h - 1 - i) * line_off, SEEK_SET);
+  //  printf("lineoff: %d\n", line_off);
     int nread = fread(&pixels[w * i], 3, w, fp);
     for (int j = w - 1; j >= 0; j --) {
       uint8_t b = *(((uint8_t*)&pixels[w * i]) + 3 * j);
@@ -49,6 +50,7 @@ int NDL_LoadBitmap(NDL_Bitmap *bmp, const char *filename) {
       pixels[w * i + j] = (r << 16) | (g << 8) | b;
     }
   }
+    //printf("lineoff2: %d\n", line_off);
 
   fclose(fp);
   bmp->w = w;
