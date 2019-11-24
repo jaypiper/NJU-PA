@@ -61,7 +61,7 @@ int _write(int fd, void *buf, size_t count) {
   return _syscall_(SYS_write, fd, (intptr_t)buf, count);
 }
 extern char _end;
-intptr_t p_break = &_end;  //原来end只是存在最后的符号而不是指示最后的指针
+intptr_t p_break = (intptr_t)&_end;  //原来end只是存在最后的符号而不是指示最后的指针
 
 void *_sbrk(intptr_t increment) {
   intptr_t old_break = p_break;    //本来想卸载syscal里面，但返回值不好传
