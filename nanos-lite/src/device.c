@@ -41,7 +41,7 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
-  printf("len: %d, offset: %d", len, offset);
+  printf("len: %d, offset: %d\n", len, offset);
   len /= 4; offset /= 4;
   int x = offset % screen_width();
   int y = offset / screen_width();
