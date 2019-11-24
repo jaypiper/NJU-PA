@@ -59,7 +59,7 @@ int fs_open(const char* pathname, int flags, int mode){
   for(idx = 0; idx < NR_FILES; idx++){
     if(strcmp(file_table[idx].name, pathname) == 0) break;
   }
-  //printf("idx: %d, %s\n", idx,pathname);
+  printf("idx: %d, %s\n", idx,pathname);
   assert(idx < NR_FILES);
   file_table[idx].open_offset = 0;
   return idx;
@@ -76,7 +76,7 @@ size_t fs_read(int fd, void *buf, size_t len){
     read_size = file_table[fd].size - file_table[fd].open_offset;
   read_size = readf(buf, file_table[fd].disk_offset +file_table[fd].open_offset, read_size);
   file_table[fd].open_offset += read_size;
-  //printf("fd: %d\n",fd);
+  printf("fd: %d  len: \n",fd, len);
   return read_size;
 }
   // else if(fd == 4||fd == 5)){
