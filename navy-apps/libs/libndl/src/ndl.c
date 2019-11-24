@@ -52,6 +52,12 @@ int NDL_CloseDisplay() {
 }
 
 int NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
+  // for (int i = 0; i < h; i ++) {
+  //     for (int j = 0; j < w; j ++) {
+  //       printf("%x ",pixels[i * w + j]);
+  //     }  //pixel数值正常
+  //     printf("\n\n");
+  // }
   if (has_nwm) {
     for (int i = 0; i < h; i ++) {
       printf("\033[X%d;%d", x, y + i);
@@ -68,6 +74,12 @@ int NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
       }
     }
   }
+  // for (int i = 0; i < h; i ++) {
+  //     for (int j = 0; j < w; j ++) {
+  //       printf("%x ",canvas[i * w + j]);
+  //     }    //canvas 正常
+  //     printf("\n\n");
+  // }
 }
 
 int NDL_Render() {
@@ -79,8 +91,8 @@ int NDL_Render() {
       fwrite(&canvas[i * canvas_w], sizeof(uint32_t), canvas_w, fbdev);
     }
     fflush(fbdev);
-    putc(0, fbsyncdev);
-    fflush(fbsyncdev);
+    // putc(0, fbsyncdev);
+    // fflush(fbsyncdev);
   }
 }
 
