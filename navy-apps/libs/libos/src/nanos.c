@@ -61,13 +61,12 @@ int _write(int fd, void *buf, size_t count) {
   return _syscall_(SYS_write, fd, (intptr_t)buf, count);
 }
 
-extern char _end;
+intptr_t pbreak = &_end;  //原来end只是存在最后的符号而不是指示最后的指针
 
 void *_sbrk(intptr_t increment) {
-  static char* p_break = &_end;   //原来end只是存在最后的符号而不是指示最后的指针
-  char* old_break = p_break;    //本来想卸载syscal里面，但返回值不好传
-  p_break += increment;
+  intptr_t old_break = p_break;    //本来想卸载syscal里面，但返回值不好传
   _syscall_(SYS_brk, (intptr_t)p_break, 0, 0);
+  p_break += increment;     //顺序错乱
   return (void*)old_break;   //后面还需不需要改呢？
   //return (void *)-1;
 }
