@@ -42,10 +42,10 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
   //printf("len: %d, offset: %d\n", len, offset);
-  len /= 4; offset /= 4;
+   offset /= 4;
   int x = offset % screen_width();
   int y = offset / screen_width();
-   draw_rect((uint32_t*)buf, x, y, len, 1);
+   draw_rect((uint32_t*)buf, x, y, len/4, 1);
 
   // for(int beg = 0; beg < len; ){
   //   if(len - beg > screen_width() - x){
@@ -62,7 +62,7 @@ size_t fb_write(const void *buf, size_t offset, size_t len) {
     // offset ++;
     // disp += 4;
   //}
-  return len;
+  return len;   //原来我之前一直返回0
 }
 
 size_t fbsync_write(const void *buf, size_t offset, size_t len) {
