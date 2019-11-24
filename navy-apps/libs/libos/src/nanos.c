@@ -60,7 +60,7 @@ int _open(const char *path, int flags, mode_t mode) {
 int _write(int fd, void *buf, size_t count) {
   return _syscall_(SYS_write, fd, (intptr_t)buf, count);
 }
-
+extern char _end;
 intptr_t p_break = &_end;  //原来end只是存在最后的符号而不是指示最后的指针
 
 void *_sbrk(intptr_t increment) {
