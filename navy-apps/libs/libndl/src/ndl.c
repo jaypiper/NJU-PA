@@ -27,7 +27,6 @@ int NDL_OpenDisplay(int w, int h) {
     has_nwm = 0;
   }
   //printf("nvm: %d\n", has_nwm);
-  has_nwm = 1;
   if (has_nwm) {
     printf("\033[X%d;%ds", w, h); fflush(stdout);
     evtdev = stdin;
@@ -41,7 +40,7 @@ int NDL_OpenDisplay(int w, int h) {
     pad_y = (screen_h - canvas_h) / 2;
     fbdev = fopen("/dev/fb", "w"); assert(fbdev);
     evtdev = fopen("/dev/events", "r"); assert(evtdev);
-    fbsyncdev = fopen("/dev/fbsync", "w"); assert(fbsyncdev);
+   // fbsyncdev = fopen("/dev/fbsync", "w"); assert(fbsyncdev);
   }
 }
 
@@ -136,7 +135,7 @@ static void get_display_info() {
   assert(dispinfo);
   screen_w = screen_h = 0;
   char buf[128], key[128], value[128], *delim;
-  while (fgets(buf, 128, dispinfo)) {  //碰到换行符无法停止,是不是根本不会到这里来
+  while (fgets(buf, 128, dispinfo)&&screen_h == 0) {  //碰到换行符无法停止,是不是根本不会到这里来
     //printf("info1\n");
     *(delim = strchr(buf, ':')) = '\0';
     sscanf(buf, "%s", key);
