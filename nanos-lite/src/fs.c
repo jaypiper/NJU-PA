@@ -71,11 +71,11 @@ size_t fs_read(int fd, void *buf, size_t len){
   //printf("read fd: %d\n",fd);
   ReadFn readf = file_table[fd].read;
   size_t read_size = len;
+  if(readf == NULL)  readf = ramdisk_read;
   if(file_table[fd].size - file_table[fd].open_offset < len)
     read_size = file_table[fd].size - file_table[fd].open_offset;
-  if(readf == NULL)  readf = ramdisk_read;
   read_size = readf(buf, file_table[fd].disk_offset +file_table[fd].open_offset, read_size);
-
+  file_table[fd].open_offset += read_size;
   printf("fd: %d\n",fd);
   return read_size;
 }
@@ -92,15 +92,14 @@ size_t fs_read(int fd, void *buf, size_t len){
 size_t fs_write(int fd, const void *buf, size_t len){
   size_t write_size = len;
   WriteFn writef =  file_table[fd].write;
-  if(file_table[fd].write == NULL){
-    writef = ramdisk_write;
-    if(file_table[fd].size - file_table[fd].open_offset < len)
-      write_size = file_table[fd].size - file_table[fd].open_offset;
-    writef(buf, file_table[fd].disk_offset + file_table[fd].open_offset, write_size);
-    file_table[fd].open_offset += write_size;
-    return write_size;
-  }
-  else return writef(buf, 0, write_size);
+  if(file_table[fd].size - file_table[fd].open_offset < len)
+    write_size = file_table[fd].size - file_table[fd].open_offset;
+  if(fd == 1 || fd == 2) write_size = len;
+  if(file_table[fd].write == NULL)writef = ramdisk_write;
+  write_size = writef(buf, file_table[fd].disk_offset + file_table[fd].open_offset, write_size);
+  file_table[fd].open_offset += write_size;
+  return write_size;
+  //else return writef(buf, 0, write_size);
   // file_table[fd].open_offset += write_size;   //QAQ忘记加offset了
   // return write_size;
 }
