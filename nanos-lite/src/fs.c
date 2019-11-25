@@ -160,7 +160,7 @@ size_t fs_read(int fd, void *buf, size_t len){
 	}
 	else ret = file_table[fd].read(buf, file_table[fd].open_offset, len);
   file_table[fd].open_offset += ret;
-  Log("read_size = %d, filename = %s\n", ret, file_table[fd].name);
+  //Log("read_size = %d, filename = %s\n", ret, file_table[fd].name);
   return ret;
   
 }
@@ -190,7 +190,7 @@ size_t fs_lseek(int fd, size_t offset, int whence) {
 }
 
 int fs_open(const char *pathname, int flags, int mode){
-  Log("Used open function.");
+  //Log("Used open function.");
   for (int i = 0; i < NR_FILES; ++i) {
     if (strcmp(pathname, file_table[i].name) == 0) {
       file_table[i].open_offset = 0;
