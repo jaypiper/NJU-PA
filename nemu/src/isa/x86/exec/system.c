@@ -35,12 +35,20 @@ make_EHelper(int) {
 }
 
 make_EHelper(iret) {
-  rtl_pop(&s0);
-  rtl_pop(&cpu.CS);
-  rtl_pop(&cpu.eflags);
-  rtl_j(s0);
+  rtl_pop(&decinfo.seq_pc);
+	rtl_j(decinfo.seq_pc);
 
-  print_asm("iret");
+	rtl_pop(&t0);
+	cpu.CS = t0 & 0xffff;
+	rtl_pop(&cpu.eflags);
+
+	print_asm("iret");
+  // rtl_pop(&s0);
+  // rtl_pop(&cpu.CS);
+  // rtl_pop(&cpu.eflags);
+  // rtl_j(s0);
+
+  // print_asm("iret");
 }
 
 uint32_t pio_read_l(ioaddr_t);
