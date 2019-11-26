@@ -40,7 +40,7 @@ int NDL_OpenDisplay(int w, int h) {
     pad_y = (screen_h - canvas_h) / 2;
     fbdev = fopen("/dev/fb", "w"); assert(fbdev);
     evtdev = fopen("/dev/events", "r"); assert(evtdev);
-   // fbsyncdev = fopen("/dev/fbsync", "w"); assert(fbsyncdev);
+    fbsyncdev = fopen("/dev/fbsync", "w"); assert(fbsyncdev);
   }
 }
 
@@ -91,8 +91,8 @@ int NDL_Render() {
       fwrite(&canvas[i * canvas_w], sizeof(uint32_t), canvas_w, fbdev);
     }
     fflush(fbdev);
-    // putc(0, fbsyncdev);
-    // fflush(fbsyncdev);
+    putc(0, fbsyncdev);
+    fflush(fbsyncdev);
   }
 }
 
