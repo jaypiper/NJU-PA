@@ -18,7 +18,7 @@ void raise_intr(uint32_t NO, vaddr_t ret_addr) {
     rtl_push(&cpu.eflags);
     rtl_push(&cpu.CS);
     rtl_push(&ret_addr);
-    rtl_j((uint32_t)(gate.gd.offset_31_16 << 16) | (uint32_t)(gate.gd.offset_15_0& 0x0000ffff));
+    rtl_j(((uint32_t)gate.gd.offset_31_16 << 16) | ((uint32_t)gate.gd.offset_15_0& 0x0000ffff));
   }
   
 
