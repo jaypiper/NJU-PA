@@ -49,7 +49,7 @@ void naive_uload(PCB *pcb, const char *filename) {
   Log("Jump to entry = %x", entry);
   //printf("\nentry: %d %x\n", entry, entry);
 
-  ((void(*)())entry) ();
+  //((void(*)())entry) ();
 }
 
 void context_kload(PCB *pcb, void *entry) {
