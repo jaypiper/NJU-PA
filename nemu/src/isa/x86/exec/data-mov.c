@@ -92,7 +92,8 @@ make_EHelper(movs){
     // cpu.edi = s0;
     s0 = cpu.esi & 0xff;
     s1 = cpu.edi & 0xff;
-    *(uint8_t*)(intptr_t)s1 = *(uint8_t*)(intptr_t)s0;
+    s0 = vaddr_read(s0,1);
+    vaddr_write(s1,s0,1);
     cpu.edi += 1;
     cpu.esi += 1;
     //  s0 = *((uint8_t*)(intptr_t)cpu.esi);
