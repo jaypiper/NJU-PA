@@ -7,7 +7,7 @@ bool isa_difftest_checkregs(CPU_state *ref_r, vaddr_t pc) {
   // return true;
   for(int i = 0; i < 8; i++){
     if(!(ref_r->gpr[i]._32==cpu.gpr[i]._32)) {
-      printf(" %s wrong\n",regsl[i]);
+      printf(" %s wrong, now: %d, true: %d\n",regsl[i],cpu.gpr[i]._32,ref_r->gpr[i]._32);
       return false;
     }
   }
