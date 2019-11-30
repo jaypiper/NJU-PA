@@ -7,8 +7,8 @@ int main() {
   NDL_Bitmap *bmp = (NDL_Bitmap*)malloc(sizeof(NDL_Bitmap));
   printf("pass1\n");
   NDL_LoadBitmap(bmp, "/share/pictures/projectn.bmp");
-  assert(bmp->pixels);
   printf("pass2\n");  
+  assert(bmp->pixels);
   //printf("pass3\n");
   //printf("%d, %d\n", bmp->w, bmp->h);
   NDL_OpenDisplay(bmp->w, bmp->h);
