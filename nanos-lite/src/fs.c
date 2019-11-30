@@ -210,5 +210,5 @@ int fs_close(int fd){
 
 void loader_read(int idx,void* vaddr,uint32_t filesz,uint32_t memsz){
       ramdisk_read(vaddr, file_table[idx].disk_offset + file_table[idx].open_offset, filesz);
-      for(int j = filesz; j <= memsz; j++) *((uint8_t*)vaddr + j) = 0;
+      for(int j = filesz; j < memsz; j++) *((uint8_t*)vaddr + j) = 0;
 }
