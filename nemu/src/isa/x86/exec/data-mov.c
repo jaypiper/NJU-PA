@@ -90,10 +90,10 @@ make_EHelper(movs){
     // s0 = cpu.esi;
     // cpu.esi = cpu.edi;
     // cpu.edi = s0;
-    // cpu.edi += id_dest->width;
-    // cpu.esi += id_dest->width;
-    //  s0 = *((uint8_t*)(intptr_t)cpu.esi);
-    //  *((uint8_t*)(intptr_t)cpu.edi) = (uint8_t)s0;
+     s0 = *((uint8_t*)(intptr_t)cpu.esi);
+     *((uint8_t*)(intptr_t)cpu.edi) = (uint8_t)s0;
+    cpu.edi += id_dest->width;
+    cpu.esi += id_dest->width;
     // rtl_mv(cpu.edi, &s0);
     // rtl_mv(&s1,&cpu.edi);
     
