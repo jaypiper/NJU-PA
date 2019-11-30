@@ -90,8 +90,8 @@ make_EHelper(movs){
     // s0 = cpu.esi;
     // cpu.esi = cpu.edi;
     // cpu.edi = s0;
-    s0 = cpu.esi & 0xff;
-    s1 = cpu.edi & 0xff;
+    s0 = cpu.esi ;
+    s1 = cpu.edi ;
     s0 = vaddr_read(s0,1);
     vaddr_write(s1,s0,1);
     cpu.edi += 1;
