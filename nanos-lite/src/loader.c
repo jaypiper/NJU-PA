@@ -16,6 +16,7 @@ size_t fs_write(int fd, const void *buf, size_t len);
 int fs_open(const char* pathname, int flags, int mode);
 int fs_close(int fd);
 size_t fs_lseek(int fd, size_t offset, int whence);
+void loader_read(int idx,void* vaddr,uint32_t filesz,uint32_t memsz);
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
   //判断是否为elf：我没写QAQ
@@ -32,11 +33,12 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     // for(int i = 0; i < elf.e_phentsize/4; i++) printf("%x \n",*((uint32_t*)&ent+i));
     // printf("\n");
     if(ent.p_type == PT_LOAD){
-      uint8_t  buf[ent.p_memsz+1]; //需要+1吗
+     // uint8_t  buf[ent.p_memsz+1]; //需要+1吗
       fs_lseek(idx, ent.p_offset, 0);
-      fs_read(idx, buf, ent.p_filesz);
-      for(int j = ent.p_filesz; j <= ent.p_memsz; j++) buf[j] = 0;
-      memcpy((void*)ent.p_vaddr, buf , ent.p_memsz);
+      loader_read(idx,(void*)ent.p_vaddr,ent.p_filesz,ent.p_memsz);
+      // fs_read(idx, buf, ent.p_filesz);
+      // for(int j = ent.p_filesz; j <= ent.p_memsz; j++) buf[j] = 0;
+      // memcpy((void*)ent.p_vaddr, buf , ent.p_memsz);
      
     }
   }
