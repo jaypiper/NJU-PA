@@ -45,12 +45,11 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 }
 
 void naive_uload(PCB *pcb, const char *filename) {
-  uintptr_t entry = 0;
- // loader(pcb, filename);
+  uintptr_t entry = loader(pcb, filename);
   Log("Jump to entry = %x", entry);
   //printf("\nentry: %d %x\n", entry, entry);
 
-  //((void(*)())entry) ();   //test1
+  ((void(*)())entry) ();
 }
 
 void context_kload(PCB *pcb, void *entry) {
