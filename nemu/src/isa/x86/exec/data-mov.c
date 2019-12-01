@@ -92,10 +92,10 @@ make_EHelper(movs){
     // cpu.edi = s0;
     s0 = cpu.esi ;
     s1 = cpu.edi ;
-    s0 = vaddr_read(s0,1);
-    vaddr_write(s1,s0,1);
-    cpu.edi += 1;
-    cpu.esi += 1;
+    s0 = vaddr_read(s0,id_dest->width);
+    vaddr_write(s1,s0,id_dest->width);
+    cpu.edi += id_dest->width;
+    cpu.esi += id_dest->width;
     //  s0 = *((uint8_t*)(intptr_t)cpu.esi);
     //  *((uint8_t*)(intptr_t)cpu.edi) = (uint8_t)s0;
     // rtl_mv(cpu.edi, &s0);
