@@ -6,7 +6,7 @@
 int printf(const char *fmt, ...) {
   va_list args;
   int i,len;
-  char out[200];
+  static char out[256];
   va_start(args,fmt);
   vsprintf(out,fmt,args);
   va_end(args);
@@ -22,7 +22,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
   char c;
   char *str = out;
   const char *tmp;
-  char num_s[100];
+  static char num_s[128];
   int i,j,len,num;
   int flag,field_width;
 
