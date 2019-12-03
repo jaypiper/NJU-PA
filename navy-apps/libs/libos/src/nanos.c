@@ -49,7 +49,7 @@ intptr_t _syscall_(intptr_t type, intptr_t a0, intptr_t a1, intptr_t a2) {
 }
 
 void _exit(int status) {
-  _syscall_(SYS_exit, status, 0, 0);
+ _execve("/bin/init",NULL,NULL);
   while (1);
 }
 
@@ -85,7 +85,7 @@ off_t _lseek(int fd, off_t offset, int whence) {
 }
 
 int _execve(const char *fname, char * const argv[], char *const envp[]) {
-  _exit(SYS_execve);
+  _syscall_(SYS_execve, fname, argv,envp);
   return 0;
 }
 
